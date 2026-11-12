@@ -1,0 +1,25 @@
+name: 📚 자료 추천
+description: 목록에 추가할 자료를 추천해 주세요
+title: "[추천] "
+labels: ["suggestion"]
+body:
+  - type: input
+    id: url
+    attributes: { label: 링크 }
+    validations: { required: true }
+  - type: dropdown
+    id: section
+    attributes:
+      label: 분류
+      options: [한국어 가이드 · 강의, CLAUDE.md 작성법, Skills, Hooks, MCP 서버, 서브에이전트 · 플러그인, 워크플로 · 실전 사례, 도구, 기타]
+    validations: { required: true }
+  - type: textarea
+    id: why
+    attributes: { label: 한 줄 설명 / 추천 이유 }
+    validations: { required: true }
+  - type: checkboxes
+    id: tried
+    attributes:
+      label: 확인
+      options:
+        - label: 직접 써 보거나 읽어 봤어요
