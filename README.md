@@ -82,11 +82,20 @@ claude
 
 ## Hooks
 - [Hooks와 Skills 시스템](https://wikidocs.net/332773) 🇰🇷 — 위험한 작업 차단, 저장 후 자동 포맷 같은 용도
+- [Claude Code Hooks 자동화 설정 가이드: 포맷팅·명령어 차단·알림](https://wikidocs.net/blog/@openwiki/21541/) 🇰🇷 — 훅이 내 권한으로 셸 명령을 실행한다는 경고 포함
+- [Claude Code hooks in practice](https://www.digitalmarketer.co.kr/class/claude-code-in-practice/claude-code-hooks-in-practice) 🇰🇷
+- [05-3. 훅(Hook) 활용하기](https://wikidocs.net/343841) 🇰🇷
+- [04-5. Hooks로 자동 검증](https://wikidocs.net/441362) 🇰🇷
+- [12-4. 훅, 설정 범위, 확장 기능 조합](https://wikidocs.net/329921) 🇰🇷
+- [Hooks 공식 문서 (한국어)](https://docs.anthropic.com/ko/docs/claude-code/hooks) 🇰🇷 — 공식
 
 ## MCP 서버
 - [Claude Code 공식 한국어 튜토리얼](https://docs.anthropic.com/ko/docs/agents-and-tools/claude-code/tutorials) 🇰🇷 — `claude mcp add` 등록과 보안 주의사항
 - [Claude Code MCP 서버 필수 4종 가이드 — Playwright부터 Firecrawl까지](https://ice-ice-bear.github.io/ko/posts/2026-04-01-claude-code-mcp-4/) 🇰🇷
 - [Best MCP servers for Claude Code (techsy, 한국어판)](https://techsy.io/ko/blog/best-mcp-servers-claude-code)
+- [Claude code With MCP - Playwright](https://velog.io/@yardyard/Claude-code-With-MCP-Playwright) 🇰🇷 — velog
+- [Context7 MCP](https://velog.io/@xorms/Context7-MCP) 🇰🇷 — velog, `claude mcp list`로 연결 확인
+- [18-4. Claude Code에 연결하고 검증하기](https://wikidocs.net/332442) 🇰🇷
 - 연결 전 확인: [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp), [upstash/context7](https://github.com/upstash/context7) — 설치 명령과 패키지명은 각 공식 저장소의 현재 안내를 따르세요
 
 ## 서브에이전트 · 플러그인
@@ -100,6 +109,10 @@ claude
 - [roboco-io/plugins](https://github.com/roboco-io/plugins) 🇰🇷 · [shinhyukahn/cck](https://github.com/shinhyukahn/cck) 🇰🇷 — 한국 개발자의 플러그인 (설치 전 소스 확인)
 
 ## 워크플로 · 실전 사례
+- [30가지 이상의 Claude Code 활용 팁 모음 (ykdojo/claude-code-tips)](https://discuss.pytorch.kr/t/30-claude-code-feat-ykdojo-claude-code-tips/8368) 🇰🇷 — PyTorch 한국 커뮤니티
+- [Claude Code 실사용 후기](https://news.hada.io/topic?id=22053) 🇰🇷 — GeekNews
+- [요즘IT: Claude Code 활용기](https://yozm.wishket.com/magazine/detail/3442/) 🇰🇷
+- [Claude Code를 제대로 쓰는 법: 설정, 스킬, 서브에이전트, 플러그인까지](https://wikidocs.net/blog/@jaehong/15062/) 🇰🇷
 - [Claude Code로 좋은 결과 얻기](https://news.hada.io/topic?id=22425) 🇰🇷 — GeekNews
 - [02-5. Claude Code로 완성하는 터미널 에이전트 워크플로우](https://wikidocs.net/443809) 🇰🇷
 - [클로드코드로 에이전트 빌드해서 사례글 작성해보기](https://www.gpters.org/llm-service/post/build-agent-claude-code-uq1td5LsrkaaLCs) 🇰🇷 — GPTers
