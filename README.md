@@ -1,5 +1,7 @@
 # Awesome Claude Code 한국어 🇰🇷
 
+[English summary →](README.en.md)
+
 **Claude Code를 실전에서 잘 쓰기 위한 한국어 자료 · 검증된 설정 예제 모음**
 
 영어 자료는 넘쳐나는데 한국어로 "직접 써보고 검증한" 자료는 드물어서 만들었습니다.
