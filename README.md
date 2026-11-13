@@ -88,7 +88,7 @@ claude
 
 ## 서브에이전트 · 플러그인
 - [Claude Code 빠르게 마스터 하기](https://wikidocs.net/book/19664) 🇰🇷 — Skills · 서브에이전트 · Hooks 개념 구분
-- [Claude Code - 문서가 알려주지 않는 설정 가능한 모든 것](https://news.hada.io/topic/30030.md) 🇰🇷 — GeekNews
+- [Claude Code - 문서가 알려주지 않는 설정 가능한 모든 것](https://news.hada.io/topic?id=30030) 🇰🇷 — GeekNews
 - [Claude Code 서브에이전트 만들기와 활용법](https://wikidocs.net/blog/@openwiki/21549/) 🇰🇷
 - [클로드 코드 서브 에이전트: AI에게 일을 시키는 AI](https://daleseo.com/claude-code-sub-agents/) 🇰🇷
 - [04-2. 역할별 Subagent 설계 — Planner·Dev·Reviewer](https://wikidocs.net/441359) 🇰🇷
