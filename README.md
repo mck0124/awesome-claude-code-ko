@@ -73,6 +73,9 @@ claude
 - [요즘IT: Claude Code 관련 글 1](https://yozm.wishket.com/magazine/detail/3387/) 🇰🇷 · [글 2](https://yozm.wishket.com/magazine/detail/3339/) 🇰🇷
 
 ## Skills
+- [Claude Code Skills](https://velog.io/@spdhsrnvl123/Claude-Code-Skills) 🇰🇷 — velog 핸즈온
+- [클로드코드 스킬 개념부터 팀공유까지](https://brunch.co.kr/@aideveloper/267) 🇰🇷
+- [04-4. Skills 작성으로 작업 표준화](https://wikidocs.net/441361) 🇰🇷
 - [Skills 시스템](https://claude-code-playbook.pages.dev/docs/level-4/custom-skills) 🇰🇷
 - [Hooks와 Skills 시스템](https://wikidocs.net/332773) 🇰🇷
 - [CLAUDE.md 완전 정복 - Skills 완전 가이드](https://brunch.co.kr/@aideveloper/279) 🇰🇷
@@ -99,6 +102,7 @@ claude
 - 연결 전 확인: [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp), [upstash/context7](https://github.com/upstash/context7) — 설치 명령과 패키지명은 각 공식 저장소의 현재 안내를 따르세요
 
 ## 서브에이전트 · 플러그인
+- [12-3. 서브에이전트](https://wikidocs.net/329914) 🇰🇷 — `.claude/agents/`에 첫 서브에이전트 만들기
 - [Claude Code 빠르게 마스터 하기](https://wikidocs.net/book/19664) 🇰🇷 — Skills · 서브에이전트 · Hooks 개념 구분
 - [Claude Code - 문서가 알려주지 않는 설정 가능한 모든 것](https://news.hada.io/topic?id=30030) 🇰🇷 — GeekNews
 - [Claude Code 서브에이전트 만들기와 활용법](https://wikidocs.net/blog/@openwiki/21549/) 🇰🇷
