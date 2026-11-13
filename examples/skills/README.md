@@ -1,1 +1,15 @@
-_예제 준비 중_
+| 예제 | 설명 | 검증 |
+|---|---|---|
+| [commit-message](commit-message/) | 스테이지된 변경으로 Conventional Commits 메시지 제안 | ❌ 미확인 |
+| [code-review-ko](code-review-ko/) | 브랜치 변경사항 한국어 코드 리뷰 (🔴🟡🟢 형식) | ❌ 미확인 |
+| [korean-doc-polish](korean-doc-polish/) | 한국어 기술 문서의 번역투 교정 (변경 전/후 표 먼저) | ❌ 미확인 |
+| [pr-description](pr-description/) | PR 제목·설명 작성 | ❌ 미확인 |
+
+## 설치
+각 폴더를 통째로 `~/.claude/skills/`(전역) 또는 `.claude/skills/`(프로젝트)에 복사합니다.
+```bash
+cp -r commit-message ~/.claude/skills/
+```
+Claude Code를 다시 시작하면 `/commit-message`처럼 부르거나, 상황에 맞으면 자동으로 사용됩니다.
+
+> ⚠️ 위 Skill들은 아직 **Claude Code 안에서 실행해 보지 않았습니다.** 실행 후 [skill-gauge](https://github.com/mck0124/skill-gauge)로 통과율을 재서 각 README에 결과를 적을 예정입니다.
