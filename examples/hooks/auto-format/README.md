@@ -20,7 +20,10 @@ mkdir -p ~/.claude/hooks && cp format.sh ~/.claude/hooks/ && chmod +x ~/.claude/
 | `.txt` 파일 | 호출 안 됨 |
 | 파일 경로 없음 / 포맷터 미설치 | 조용히 통과 (exit 0) |
 
-> ⚠️ 실제 prettier·ruff로, 그리고 Claude Code 안에서 도는 것은 **아직 메인테이너가 확인하지 않았습니다.**
+## Claude Code 안에서 확인 ✅ (2026-11-16)
+전역 설정에 설치하고 ruff 를 깐 뒤, Claude가 Write 도구로 일부러 엉망으로 쓴 `.py` 파일(`def  f( a,b ):`, 작은따옴표)을 만들자 곧바로 `def f(a, b):`, 큰따옴표로 포맷됐습니다. Claude Code는 "훅이 파일을 고쳤다"는 안내를 Claude에게 전달했습니다.
+
+Claude Code 안에서 확인한 것은 ruff(`.py`)뿐입니다. prettier·gofmt·rustfmt 경로는 확인하지 않았습니다.
 
 ## 주의할 점
 - 파일이 바뀌므로 Claude가 다음 수정 때 "파일이 예상과 다르다"고 한 번 다시 읽을 수 있습니다.

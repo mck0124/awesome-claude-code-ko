@@ -21,6 +21,6 @@
 |---|---|---|
 | Skill | [commit-message](skills/commit-message/) · [code-review-ko](skills/code-review-ko/) · [korean-doc-polish](skills/korean-doc-polish/) · [pr-description](skills/pr-description/) | ❌ 실행·측정 전 |
 | Hook | [block-dangerous-commands](hooks/block-dangerous-commands/) | ✅ Claude Code에서 차단 확인 (2026-11-16) |
-| Hook | [auto-format](hooks/auto-format/) | 스크립트 테스트 완료 (가짜 포맷터) |
+| Hook | [auto-format](hooks/auto-format/) | ✅ Claude Code에서 ruff로 확인 (2026-11-16) |
 | Hook | [notify-on-stop](hooks/notify-on-stop/) | 문법 검사만 |
 | 설정 | [permissions-allowlist](settings/permissions-allowlist/) · [project-claude-md](settings/project-claude-md/) · [personal-claude-md](settings/personal-claude-md/) | ❌ 미확인 / 템플릿 |
