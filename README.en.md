@@ -9,12 +9,18 @@ English is well covered ([hesreallyhim/awesome-claude-code](https://github.com/h
 ## What's inside
 | | |
 |---|---|
-| 📚 **44+ Korean resources** | Official docs, wikidocs books, GeekNews threads, blog guides, grouped by topic (CLAUDE.md, Skills, Hooks, MCP, subagents, cost/context) |
-| 🧰 **9 examples** | 4 Skills (commit message, code review, doc polish, PR description) · 3 Hooks (block dangerous commands, auto-format, notify on stop) · 3 settings (permissions allowlist, project/personal `CLAUDE.md`) |
+| 📚 **60+ links, mostly Korean** | Official docs, wikidocs books, GeekNews threads, blog guides, grouped by topic (CLAUDE.md, Skills, Hooks, MCP, subagents, cost/context) |
+| 🧰 **10 examples** | 4 Skills (commit message, code review, doc polish, PR description) · 3 Hooks (block dangerous commands, auto-format, notify on stop) · 3 settings (permissions allowlist, project/personal `CLAUDE.md`) |
 | 🚀 **10-minute start guide** | Install → first session → `/init` → permissions → `/clear` vs `/compact` |
 
 ## Honest status
-Examples are labeled with how far they were actually verified. Hook scripts were tested by piping sample JSON into them; **none of the examples has been run end-to-end inside Claude Code by the maintainer yet**, and none gets a ✅ until it has. Skills will be benchmarked with [skill-gauge](https://github.com/mck0124/skill-gauge) (pass rate over N runs) before being marked verified.
+Each example says how far it was actually checked (as of 2026-11-16):
+
+- **Hooks (3):** installed and confirmed working inside Claude Code on macOS.
+- **Settings (3):** confirmed inside Claude Code with a headless run in a scratch project.
+- **Skills (4):** run once inside Claude Code, then measured with [skill-gauge](https://github.com/mck0124/skill-gauge): with vs. without the skill, 5 runs per case, Claude Sonnet 5.5, regex checks only. Three skills went from 0–30% to 100% on their format rules; `commit-message` showed no difference (100% both ways), and its README says so. Suites and raw results are in each skill's `eval/` folder.
+
+The pass rates measure whether the output follows the skill's rules every time, not overall quality. Resource links without a ✅ were collected but not yet reviewed in depth by the maintainer.
 
 ## Contributing
 Suggest a resource or send an example: see [CONTRIBUTING.md](CONTRIBUTING.md). English issues and PRs are welcome.
