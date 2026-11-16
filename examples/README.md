@@ -23,4 +23,4 @@
 | Hook | [block-dangerous-commands](hooks/block-dangerous-commands/) | ✅ Claude Code에서 차단 확인 (2026-11-16) |
 | Hook | [auto-format](hooks/auto-format/) | ✅ Claude Code에서 ruff로 확인 (2026-11-16) |
 | Hook | [notify-on-stop](hooks/notify-on-stop/) | ✅ Claude Code에서 확인, macOS (2026-11-16) |
-| 설정 | [permissions-allowlist](settings/permissions-allowlist/) · [project-claude-md](settings/project-claude-md/) · [personal-claude-md](settings/personal-claude-md/) | ❌ 미확인 / 템플릿 |
+| 설정 | [permissions-allowlist](settings/permissions-allowlist/) · [project-claude-md](settings/project-claude-md/) · [personal-claude-md](settings/personal-claude-md/) | ✅ Claude Code에서 확인 (2026-11-16) |

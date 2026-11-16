@@ -10,7 +10,17 @@
 프로젝트에 `.claude/settings.json`으로 복사하거나 내용을 기존 파일에 합칩니다. 개인 전체 설정이면 `~/.claude/settings.json`.
 
 ## 검증
-> ⚠️ **아직 메인테이너가 Claude Code에서 확인하지 않았습니다.** 규칙 문법(`Bash(명령:*)` 형식)은 버전에 따라 바뀔 수 있으니 [공식 권한 문서](https://code.claude.com/docs/ko/quickstart)에서 현재 형식을 먼저 확인하세요.
+**Claude Code에서 확인 ✅ (2026-11-16, Claude Code 2.1.318)**
+테스트용 프로젝트의 `.claude/settings.json`에 이 파일을 그대로 넣고 `claude -p`(기본 권한 모드)로 네 가지를 시켰습니다.
+
+| 시도 | 결과 |
+|---|---|
+| `git status` 실행 | 프롬프트 없이 실행됨 (`allow`) |
+| Read 도구로 `.env` 읽기 | 거부됨 (`deny`) |
+| `git push` 실행 | 거부됨 (`deny`) |
+| `touch x.txt` (목록에 없는 명령) | 실행 안 됨. `-p`에서는 승인할 사람이 없어 막히고, 대화형에서는 프롬프트가 뜹니다 |
+
+확인한 것은 위 규칙뿐입니다. `rm -rf`·`secrets/` 거부와 npm·pytest 허용 규칙은 확인하지 않았습니다. 규칙 문법은 버전에 따라 바뀔 수 있으니 [공식 문서](https://code.claude.com/docs/ko/quickstart)도 함께 확인하세요.
 
 ## 주의할 점
 - `deny`가 `allow`보다 우선합니다. `git push`를 막아 둔 이유는 배포는 사람이 하도록 하기 위해서이고, 필요하면 해당 줄을 지우세요.
