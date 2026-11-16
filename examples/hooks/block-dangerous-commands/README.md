@@ -7,6 +7,14 @@ Claude가 `rm -rf ~`, `git push --force`, `git reset --hard`, `DROP TABLE`, `cur
 권한 프롬프트를 줄이려고 Bash를 넓게 허용해 둔 상태에서, 되돌릴 수 없는 명령만은 코드로 막고 싶을 때.
 
 ## 설치
+**플러그인으로 설치 (권장)** — Claude Code 안에서:
+```
+/plugin marketplace add mck0124/awesome-claude-code-ko
+/plugin install block-dangerous-commands@awesome-claude-code-ko
+```
+Claude Code 2.1.275 이상이면 `/plugin install block-dangerous-commands --marketplace mck0124/awesome-claude-code-ko` 한 줄로도 됩니다.
+
+**직접 복사해서 설치**
 ```bash
 mkdir -p ~/.claude/hooks
 cp block-dangerous.sh ~/.claude/hooks/ && chmod +x ~/.claude/hooks/block-dangerous.sh

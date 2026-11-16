@@ -1,0 +1,7 @@
+{
+  "name": "ko-skills",
+  "version": "0.1.0",
+  "description": "한국어 Skill 4개: 커밋 메시지, 한국어 코드 리뷰, 한국어 문서 다듬기, PR 설명",
+  "author": { "name": "mck0124", "url": "https://github.com/mck0124" },
+  "skills": ["./commit-message", "./code-review-ko", "./korean-doc-polish", "./pr-description"]
+}

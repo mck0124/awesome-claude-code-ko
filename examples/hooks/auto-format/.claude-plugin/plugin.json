@@ -1,0 +1,6 @@
+{
+  "name": "auto-format",
+  "version": "0.1.0",
+  "description": "파일 수정 직후 포맷터를 자동 실행하는 Hook",
+  "author": { "name": "mck0124", "url": "https://github.com/mck0124" }
+}

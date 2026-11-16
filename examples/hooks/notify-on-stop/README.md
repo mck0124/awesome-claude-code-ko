@@ -7,6 +7,14 @@ Claude가 응답을 마치면 macOS 알림(소리 포함)을 띄웁니다. Linux
 리팩터링·테스트처럼 오래 걸리는 작업을 맡기고 다른 창에서 일할 때.
 
 ## 설치
+**플러그인으로 설치 (권장)** — Claude Code 안에서:
+```
+/plugin marketplace add mck0124/awesome-claude-code-ko
+/plugin install notify-on-stop@awesome-claude-code-ko
+```
+Claude Code 2.1.275 이상이면 `/plugin install notify-on-stop --marketplace mck0124/awesome-claude-code-ko` 한 줄로도 됩니다.
+
+**직접 복사해서 설치**
 ```bash
 mkdir -p ~/.claude/hooks && cp notify.sh ~/.claude/hooks/ && chmod +x ~/.claude/hooks/notify.sh
 ```

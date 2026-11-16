@@ -13,6 +13,14 @@ English is well covered ([hesreallyhim/awesome-claude-code](https://github.com/h
 | 🧰 **10 examples** | 4 Skills (commit message, code review, doc polish, PR description) · 3 Hooks (block dangerous commands, auto-format, notify on stop) · 3 settings (permissions allowlist, project/personal `CLAUDE.md`) |
 | 🚀 **10-minute start guide** | Install → first session → `/init` → permissions → `/clear` vs `/compact` |
 
+## Install as a plugin
+This repo is also a Claude Code plugin marketplace. Inside Claude Code:
+```
+/plugin marketplace add mck0124/awesome-claude-code-ko
+/plugin install ko-skills@awesome-claude-code-ko
+```
+Plugins: `ko-skills` (4 skills), `block-dangerous-commands`, `auto-format`, `notify-on-stop`. Install only what you need.
+
 ## Honest status
 Each example says how far it was actually checked (as of 2026-11-16):
 

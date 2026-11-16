@@ -6,6 +6,14 @@
 | [pr-description](pr-description/) | PR 제목·설명 작성 | ✅ 측정: 0% → 100% |
 
 ## 설치
+**플러그인으로 설치 (권장)** — Claude Code 안에서:
+```
+/plugin marketplace add mck0124/awesome-claude-code-ko
+/plugin install ko-skills@awesome-claude-code-ko
+```
+Claude Code 2.1.275 이상이면 `/plugin install ko-skills --marketplace mck0124/awesome-claude-code-ko` 한 줄로도 됩니다.
+
+**직접 복사해서 설치**
 각 폴더를 통째로 `~/.claude/skills/`(전역) 또는 `.claude/skills/`(프로젝트)에 복사합니다.
 ```bash
 cp -r commit-message ~/.claude/skills/

@@ -1,0 +1,31 @@
+{
+  "name": "awesome-claude-code-ko",
+  "description": "한국어 Claude Code 예제 모음: 직접 확인한 Skill과 Hook을 명령 한 줄로 설치",
+  "owner": { "name": "mck0124", "url": "https://github.com/mck0124" },
+  "plugins": [
+    {
+      "name": "ko-skills",
+      "description": "한국어 Skill 4개: 커밋 메시지, 한국어 코드 리뷰, 한국어 문서 다듬기, PR 설명",
+      "source": "./examples/skills",
+      "category": "productivity"
+    },
+    {
+      "name": "block-dangerous-commands",
+      "description": "rm -rf ~, git push --force, git reset --hard, DROP TABLE, curl | sh 를 실행 전에 막는 Hook",
+      "source": "./examples/hooks/block-dangerous-commands",
+      "category": "security"
+    },
+    {
+      "name": "auto-format",
+      "description": "Claude가 파일을 고친 직후 prettier / ruff / gofmt / rustfmt 를 자동 실행하는 Hook",
+      "source": "./examples/hooks/auto-format",
+      "category": "development"
+    },
+    {
+      "name": "notify-on-stop",
+      "description": "Claude가 응답을 끝내면 알림을 띄우는 Hook (macOS / Linux)",
+      "source": "./examples/hooks/notify-on-stop",
+      "category": "productivity"
+    }
+  ]
+}

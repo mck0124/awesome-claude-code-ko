@@ -1,0 +1,6 @@
+{
+  "name": "block-dangerous-commands",
+  "version": "0.1.0",
+  "description": "되돌릴 수 없는 명령을 실행 전에 막는 Hook",
+  "author": { "name": "mck0124", "url": "https://github.com/mck0124" }
+}

@@ -7,6 +7,16 @@
 커밋 메시지를 매번 고민하거나, 팀 컨벤션을 자꾸 어길 때.
 
 ## 설치
+**플러그인으로 설치 (권장)** — Claude Code 안에서:
+```
+/plugin marketplace add mck0124/awesome-claude-code-ko
+/plugin install ko-skills@awesome-claude-code-ko
+```
+Claude Code 2.1.275 이상이면 `/plugin install ko-skills --marketplace mck0124/awesome-claude-code-ko` 한 줄로도 됩니다.
+
+Skill 4개가 함께 설치되고 `/ko-skills:commit-message`로 부를 수 있습니다.
+
+**이 Skill만 직접 복사해서 설치**
 ```bash
 cp -r commit-message ~/.claude/skills/
 ```

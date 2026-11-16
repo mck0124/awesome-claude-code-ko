@@ -7,6 +7,14 @@ Claude가 파일을 쓰거나 고칠 때마다 확장자에 맞는 포맷터(pre
 Claude가 만든 코드의 들여쓰기·따옴표 스타일이 프로젝트와 달라서 diff가 지저분해질 때.
 
 ## 설치
+**플러그인으로 설치 (권장)** — Claude Code 안에서:
+```
+/plugin marketplace add mck0124/awesome-claude-code-ko
+/plugin install auto-format@awesome-claude-code-ko
+```
+Claude Code 2.1.275 이상이면 `/plugin install auto-format --marketplace mck0124/awesome-claude-code-ko` 한 줄로도 됩니다.
+
+**직접 복사해서 설치**
 ```bash
 mkdir -p ~/.claude/hooks && cp format.sh ~/.claude/hooks/ && chmod +x ~/.claude/hooks/format.sh
 ```
