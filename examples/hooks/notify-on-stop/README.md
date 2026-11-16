@@ -12,8 +12,10 @@ mkdir -p ~/.claude/hooks && cp notify.sh ~/.claude/hooks/ && chmod +x ~/.claude/
 ```
 `settings.snippet.json`의 `hooks`를 `~/.claude/settings.json`에 합칩니다.
 
-## 테스트 결과
-문법 검사(`bash -n`)만 했습니다. 알림이 실제로 뜨는지는 **아직 메인테이너가 확인하지 않았습니다.**
+## Claude Code 안에서 확인 ✅ (2026-11-16)
+macOS에서 전역 설정에 설치한 뒤, Claude의 응답이 끝나자 알림과 소리가 났습니다. 기존에 있던 다른 Stop 훅과 함께 등록해도 둘 다 동작했습니다.
+
+Linux(`notify-send`)와 터미널 벨 경로는 확인하지 않았습니다.
 
 ## 주의할 점
 - 매 응답마다 울립니다. 짧은 질문이 많으면 시끄러우니, 쓰지 않을 때는 settings에서 빼 두세요.
