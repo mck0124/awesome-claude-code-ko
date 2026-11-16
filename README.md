@@ -132,7 +132,7 @@ claude
 - [mck0124/skill-gauge](https://github.com/mck0124/skill-gauge) ✅ 🧪 — Skill · 프롬프트를 YAML 테스트로 N회 반복 실행해 통과율 · 점수 분산 · 회귀를 측정하는 CLI
 
 ## 검증된 예제
-[`examples/`](examples/)의 예제는 다음을 목표로 합니다. **지금은 대부분 "만들어 두고 스크립트만 테스트"한 단계이며, 각 예제 README의 검증 항목에 실제 상태를 적어 두었습니다.**
+[`examples/`](examples/)의 예제는 다음을 목표로 합니다. **지금은 Hook 3개를 Claude Code 안에서 확인했고, Skill 4개는 한 번씩 실행만 해 본 단계입니다(전/후 측정 전). 각 예제 README에 실제 상태를 적어 두었습니다.**
 1. 메인테이너가 직접 실행해 봄
 2. 무엇이 좋아졌는지 **전/후**를 적음 (가능하면 [skill-gauge](https://github.com/mck0124/skill-gauge)로 측정한 수치)
 3. 그대로 복사해서 쓸 수 있음

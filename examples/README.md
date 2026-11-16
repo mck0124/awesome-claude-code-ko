@@ -19,7 +19,7 @@
 ## 현재 예제
 | 분류 | 예제 | 검증 상태 |
 |---|---|---|
-| Skill | [commit-message](skills/commit-message/) · [code-review-ko](skills/code-review-ko/) · [korean-doc-polish](skills/korean-doc-polish/) · [pr-description](skills/pr-description/) | ❌ 실행·측정 전 |
+| Skill | [commit-message](skills/commit-message/) · [code-review-ko](skills/code-review-ko/) · [korean-doc-polish](skills/korean-doc-polish/) · [pr-description](skills/pr-description/) | 🟡 Claude Code에서 1회 실행 확인 · 측정 전 |
 | Hook | [block-dangerous-commands](hooks/block-dangerous-commands/) | ✅ Claude Code에서 차단 확인 (2026-11-16) |
 | Hook | [auto-format](hooks/auto-format/) | ✅ Claude Code에서 ruff로 확인 (2026-11-16) |
 | Hook | [notify-on-stop](hooks/notify-on-stop/) | ✅ Claude Code에서 확인, macOS (2026-11-16) |
