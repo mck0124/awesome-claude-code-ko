@@ -1,0 +1,314 @@
+{
+  "version": 1,
+  "suite": "commit-message",
+  "startedAt": "2026-11-16T08:25:07.573Z",
+  "finishedAt": "2026-11-16T08:25:31.947Z",
+  "repeat": 5,
+  "trials": [
+    {
+      "caseId": "feat-scope",
+      "trial": 1,
+      "output": "최근 로그 스타일(Conventional Commits, `type(scope): 설명`)에 맞춰 작성했습니다.\n\n```\nfeat(cart): add free shipping eligibility check\n```\n\n본문을 포함한 버전:\n\n```\nfeat(cart): add free shipping eligibility check\n\nAdd is_free_shipping() to determine whether an order qualifies\nfor free shipping. Orders of 50,000 or more are eligible.\n```\n\n참고로 기준 금액(50000)이 하드코딩되어 있으니, 나중에 상수나 설정값으로 분리하는 것도 고려해 보세요.",
+      "error": null,
+      "durationMs": 4923,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "feat-scope",
+      "trial": 2,
+      "output": "기존 로그가 Conventional Commits 형식(`type(scope): 설명`)이라 같은 형식으로 작성했습니다.\n\n```\nfeat(cart): add free shipping eligibility check\n```\n\n본문을 추가하고 싶다면:\n\n```\nfeat(cart): add free shipping eligibility check\n\nAdd is_free_shipping() to determine free shipping for orders\nof 50,000 or more.\n```",
+      "error": null,
+      "durationMs": 4203,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "feat-scope",
+      "trial": 3,
+      "output": "최근 커밋 스타일(Conventional Commits, `type(scope): 설명`)에 맞춘 메시지입니다.\n\n```\nfeat(cart): add free shipping eligibility check\n```\n\n본문을 포함한 버전:\n\n```\nfeat(cart): add free shipping eligibility check\n\nAdd is_free_shipping() to determine whether an order qualifies\nfor free shipping. Orders of 50,000 or more are eligible.\n```\n\n참고로, 기준 금액 50000이 코드에 하드코딩되어 있어서 나중에 상수나 설정으로 분리하는 것도 고려해볼 만합니다.",
+      "error": null,
+      "durationMs": 5243,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "feat-scope",
+      "trial": 4,
+      "output": "최근 커밋 스타일(Conventional Commits, `type(scope): 설명`)에 맞춘 메시지입니다.\n\n```\nfeat(cart): add free shipping eligibility check\n```\n\n본문을 포함한 버전:\n\n```\nfeat(cart): add free shipping eligibility check\n\nAdd is_free_shipping() to determine whether an order qualifies\nfor free shipping. Orders of 50,000 or more are eligible.\n```\n\n참고로 50000이라는 기준값이 코드에 하드코딩되어 있으니, 나중에 `FREE_SHIPPING_THRESHOLD` 같은 상수로 분리하는 것도 고려해 보세요.",
+      "error": null,
+      "durationMs": 6287,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "feat-scope",
+      "trial": 5,
+      "output": "최근 커밋 스타일(Conventional Commits, `type(scope): 설명`)에 맞춘 메시지입니다.\n\n```\nfeat(cart): add free shipping eligibility check\n```\n\n본문을 포함한 버전:\n\n```\nfeat(cart): add free shipping eligibility check\n\nAdd is_free_shipping() to determine whether an order qualifies\nfor free shipping. Orders of 50,000 or more are eligible.\n```\n\n참고로 기준 금액(50000)이 하드코딩되어 있으니, 나중에 상수나 설정으로 분리하는 것도 고려해 볼 만합니다.",
+      "error": null,
+      "durationMs": 6009,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "korean-log",
+      "trial": 1,
+      "output": "```\nfix(parser): time 요소가 없는 GPX 트랙포인트 건너뛰기\n```\n\n본문을 포함한 버전이 필요하면:\n\n```\nfix(parser): time 요소가 없는 GPX 트랙포인트 건너뛰기\n\ntrkpt 노드에 time 요소가 없으면 to_point 호출 시 문제가 생길 수 있어\n해당 포인트는 파싱 결과에서 제외하도록 변경.\n```\n\n최근 커밋 스타일(`type(scope): 한국어 설명`)에 맞췄습니다.",
+      "error": null,
+      "durationMs": 5292,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "korean-log",
+      "trial": 2,
+      "output": "기존 커밋 스타일(Conventional Commits, 한국어 설명)에 맞춘 메시지입니다.\n\n```\nfix(parser): time 요소가 없는 GPX 트랙포인트 건너뛰기\n```\n\n본문을 포함한 버전:\n\n```\nfix(parser): time 요소가 없는 GPX 트랙포인트 건너뛰기\n\ntrkpt 노드에 time 요소가 없으면 to_point 변환 중 오류가 발생할 수\n있어, 해당 포인트는 파싱 대상에서 제외하도록 수정함.\n```\n\n참고: diff만으로는 실제로 오류가 발생했는지 알 수 없어서, 본문의 \"오류가 발생할 수 있어\" 부분은 추측입니다. 실제 동기(예: 오류 방지, 시간 없는 포인트 제외 정책 등)에 맞게 조정해 주세요.",
+      "error": null,
+      "durationMs": 6485,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "korean-log",
+      "trial": 3,
+      "output": "최근 커밋 스타일(Conventional Commits, 한국어 설명)에 맞춘 메시지입니다.\n\n```\nfix(parser): time 요소가 없는 GPX 트랙포인트 건너뛰기\n```\n\n본문을 포함한 버전:\n\n```\nfix(parser): time 요소가 없는 GPX 트랙포인트 건너뛰기\n\ntrkpt에 time 요소가 없으면 to_point 변환 시 문제가 생길 수 있어\n해당 포인트를 파싱 대상에서 제외한다.\n```\n\n변경이 작아서 한 줄짜리 메시지로도 충분합니다. 다만 실제로 `to_point`에서 에러가 났던 경우라면 본문에 그 증상(예: 어떤 예외가 발생했는지)을 적어두면 나중에 이력을 볼 때 도움이 됩니다.",
+      "error": null,
+      "durationMs": 5772,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "korean-log",
+      "trial": 4,
+      "output": "추천 커밋 메시지:\n\n```\nfix(parser): time 요소가 없는 GPX 트랙포인트 건너뛰기\n```\n\n본문을 추가하고 싶다면:\n\n```\nfix(parser): time 요소가 없는 GPX 트랙포인트 건너뛰기\n\ntime 요소가 없는 trkpt 노드는 건너뛰도록 처리한다.\n```\n\n최근 로그의 스타일(`type(scope): 한글 설명`)에 맞췄습니다.",
+      "error": null,
+      "durationMs": 7507,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "korean-log",
+      "trial": 5,
+      "output": "기존 커밋 스타일(Conventional Commits, 한국어 설명)에 맞춘 메시지입니다.\n\n```\nfix(parser): time 요소가 없는 GPX 트랙포인트 건너뛰기\n```\n\n본문을 포함한 버전이 필요하면 이쪽을 쓰세요:\n\n```\nfix(parser): time 요소가 없는 GPX 트랙포인트 건너뛰기\n\ntrkpt 노드에 time 요소가 없으면 to_point 단계에서 오류가 발생할 수\n있어, 해당 노드를 파싱 대상에서 제외하도록 수정.\n```\n\n참고로 본문의 오류 발생 가능성은 diff만 보고 추정한 내용이라, 실제 동작과 다르다면 수정해 주세요.",
+      "error": null,
+      "durationMs": 7408,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "mixed-change",
+      "trial": 1,
+      "output": "```\nfeat(cli): add CSV export for track points\n\nAdd export_csv() to write each point's lat/lon to a CSV file.\n\nAlso fix the GPX parser to skip trackpoints that have no <time>\nelement instead of including them.\n```\n\n스테이지된 변경이 서로 무관한 두 가지(파서 수정, CLI 기능 추가)라서 나눠서 커밋하는 것도 좋습니다.\n\n```\nfix(parser): skip GPX trackpoints without time element\n```\n\n```\nfeat(cli): add CSV export for track points\n```\n\n나누려면 `git restore --staged src/cli/export.py`로 export.py를 언스테이지한 뒤 첫 번째 커밋을 하고, 이후에 export.py를 add해서 두 번째 커밋을 하면 됩니다.",
+      "error": null,
+      "durationMs": 5790,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "mixed-change",
+      "trial": 2,
+      "output": "두 가지 변경이 섞여 있어서 하나로 묶는 것보다 분리 커밋을 권장하지만, 하나로 묶을 경우의 메시지도 함께 드립니다.\n\n**권장: 두 개로 분리**\n\n```\nfix(parser): skip GPX track points without time element\n```\n\n```\nfeat(cli): add CSV export for track points\n```\n\n**하나로 묶을 경우**\n\n```\nfeat(cli): add CSV export and skip GPX points without time\n\n- export: add export_csv() writing lat/lon rows to a CSV file\n- parser: skip trkpt nodes that lack a <time> element\n```\n\n참고로 `export_csv`는 헤더 행이 없고 lat/lon만 출력합니다. 의도한 동작이라면 괜찮습니다.",
+      "error": null,
+      "durationMs": 5460,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "mixed-change",
+      "trial": 3,
+      "output": "두 가지 변경이 섞여 있어서, 가능하면 커밋을 나누는 걸 추천해요. 우선 하나로 합친 버전과 분리 버전을 같이 드릴게요.\n\n**하나로 커밋할 경우**\n```\nfeat(cli): add CSV export and skip GPX points without time\n\n- add export_csv to write lat/lon of points to a CSV file\n- skip trkpt nodes missing a time element in the GPX parser\n```\n\n**분리해서 커밋할 경우 (권장)**\n```\nfix(parser): skip GPX track points without time\n```\n```\nfeat(cli): add CSV export for track points\n```\n\n참고로 `export_csv`는 현재 헤더 없이 lat, lon만 쓰고 있어요. 의도한 거라면 괜찮지만, 헤더가 필요하면 추가하는 것도 고려해 보세요.",
+      "error": null,
+      "durationMs": 5113,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "mixed-change",
+      "trial": 4,
+      "output": "두 가지 변경이 섞여 있어서 커밋을 나누는 것을 권장하지만, 하나로 묶는다면 아래를 쓸 수 있습니다.\n\n**하나의 커밋으로:**\n\n```\nfeat(cli): add CSV export and skip GPX points without time\n\n- cli: add export_csv to write point lat/lon to a CSV file\n- parser: skip trkpt nodes that have no time element\n```\n\n**나눠서 커밋하는 경우 (권장):**\n\n```\nfix(parser): skip GPX track points without time\n```\n\n```\nfeat(cli): add CSV export for points\n```\n\n나눠서 커밋하려면 `git reset HEAD src/cli/export.py`로 export를 unstage한 뒤 parser 변경만 먼저 커밋하고, 이어서 export.py를 add해서 커밋하면 됩니다.\n\n참고로 `export_csv`는 위도/경도만 내보내고 헤더 행이 없습니다. 의도한 것이 아니라면 헤더나 시간/고도 필드 추가를 고려해 보세요.",
+      "error": null,
+      "durationMs": 5453,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "mixed-change",
+      "trial": 5,
+      "output": "두 변경이 서로 성격이 달라서 커밋을 나누는 걸 추천해요. 기존 로그가 Conventional Commits 형식이라 맞춰서 작성했습니다.\n\n**권장: 2개로 분리**\n\n```\nfix(parser): skip GPX track points without time\n```\n\n```\nfeat(cli): add CSV export for track points\n```\n\n**하나로 합쳐야 한다면**\n\n```\nfeat(cli): add CSV export and skip GPX points without time\n\n- add export_csv() to write lat/lon of points to a CSV file\n- skip trkpt nodes missing a <time> element in the GPX parser\n```\n\n분리하려면 아래처럼 하면 됩니다.\n\n```sh\ngit reset\ngit add src/parser/gpx.py && git commit -m \"fix(parser): skip GPX track points without time\"\ngit add src/cli/export.py && git commit -m \"feat(cli): add CSV export for track points\"\n```\n\n참고로 `export_csv`는 헤더 없이 `lat, lon`만 내보냅니다. 의도한 동작이라면 괜찮지만, 시간이나 고도 같은 다른 필드가 필요하면 이후에 추가해야 해요.",
+      "error": null,
+      "durationMs": 6749,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    }
+  ]
+}

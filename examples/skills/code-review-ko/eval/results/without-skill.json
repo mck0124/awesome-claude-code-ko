@@ -1,0 +1,329 @@
+{
+  "version": 1,
+  "suite": "code-review-ko",
+  "startedAt": "2026-11-16T08:25:58.505Z",
+  "finishedAt": "2026-11-16T08:26:24.876Z",
+  "repeat": 5,
+  "trials": [
+    {
+      "caseId": "zero-division",
+      "trial": 1,
+      "output": "## 리뷰 결과\n\n변경 내용: `cart.py`에 `average_price(items)` 함수 추가\n\n### 🔴 문제점\n\n**1. 빈 리스트일 때 `ZeroDivisionError`**\n`items`가 비어 있으면 `len(items) == 0`이라 예외가 발생합니다. 빈 장바구니는 흔한 상태이므로 처리가 필요합니다.\n\n**2. \"평균 가격\"의 의미가 모호함**\n현재 구현은 `총액 / 항목 수(라인 수)`입니다. 그런데 `total`은 `price * qty`로 수량을 반영하므로 다음과 같이 해석이 갈립니다.\n- 예: `[{\"price\": 100, \"qty\": 10}, {\"price\": 200, \"qty\": 1}]`\n  - 현재: `(1000 + 200) / 2 = 600` → 실제 어떤 상품 가격과도 가깝지 않음\n  - 개당 평균(수량 가중): `1200 / 11 ≈ 109.09`\n\n\"상품 한 개당 평균 가격\"이 의도라면 `len(items)`가 아니라 `sum(i[\"qty\"] for i in items)`로 나누어야 합니다. 라인당 평균 금액이 의도라면 함수명이 `average_line_total` 같은 이름이 더 정확합니다.\n\n### 🟡 제안\n\n- 빈 입력 처리 방식 결정 (`0` 반환 / `None` 반환 / 예외 발생 중 팀 컨벤션에 맞게)\n- 테스트 추가 (빈 리스트, 단일 항목, 수량이 다른 여러 항목)\n- docstring으로 의미 명시\n\n### 제안 코드 (개당 평균 기준)\n\n```python\ndef average_price(items):\n    \"\"\"상품 1개당 평균 가격. 장바구니가 비어 있으면 0을 반환.\"\"\"\n    total_qty = sum(i[\"qty\"] for i in items)\n    if total_qty == 0:\n        return 0\n    return total(items) / total_qty\n```\n\n`qty`가 0인 항목만 있는 경우도 `total_qty == 0` 검사로 함께 방어됩니다.\n\n의도하신 의미가 어느 쪽인지 알려주시면 그에 맞춰 테스트 코드도 작성해 드리겠습니다.",
+      "error": null,
+      "durationMs": 9326,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "regex",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "no match for /cart\\.py:\\d+/"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": false,
+      "score": 0.6666666666666666
+    },
+    {
+      "caseId": "zero-division",
+      "trial": 2,
+      "output": "# 코드 리뷰: `average_price`\n\n## 🔴 주요 문제\n\n**1. 빈 리스트일 때 `ZeroDivisionError` 발생**\n`items`가 비어 있으면 `len(items) == 0`이라 예외가 납니다. 장바구니가 비어 있는 상황은 흔하므로 처리가 필요합니다.\n\n**2. 함수 이름과 계산 내용이 불일치 (의미상 버그 가능성)**\n현재 구현은 `총액 / 상품 종류 수`입니다. 즉 \"라인 아이템당 평균 금액\"이지 \"상품 1개당 평균 가격\"이 아닙니다.\n\n예시:\n```python\nitems = [{\"price\": 100, \"qty\": 1}, {\"price\": 10, \"qty\": 9}]\n# total = 190, len = 2 → 95.0\n# 실제 개당 평균 가격: 190 / 10 = 19.0\n```\n`average_price`가 \"개당 평균 가격\"을 뜻한다면 분모는 수량의 합이어야 합니다.\n\n## 🟡 제안\n\n- 빈 입력 시 동작을 명확히 정하세요 (`0` 반환, `None` 반환, 또는 명시적 `ValueError`).\n- 테스트가 추가되지 않았습니다. 빈 리스트, 단일 상품, 수량이 다른 여러 상품 케이스를 넣는 걸 권장합니다.\n- 금액 계산이라면 `float` 오차를 피하기 위해 `Decimal` 사용도 고려해 보세요 (기존 `total`에도 해당되는 사항).\n\n## 💡 수정 제안 (개당 평균 가격 기준)\n\n```python\ndef average_price(items):\n    count = sum(i[\"qty\"] for i in items)\n    if count == 0:\n        return 0  # 또는 None / raise ValueError\n    return total(items) / count\n```\n\n라인 아이템당 평균이 의도라면 아래처럼 빈 리스트만 처리하면 됩니다:\n\n```python\ndef average_price(items):\n    if not items:\n        return 0\n    return total(items) / len(items)\n```\n\n## 요약\n의도(개당 vs. 라인당)를 먼저 확정하고, 빈 입력 처리와 테스트를 추가한 뒤 머지하는 것을 권장합니다.",
+      "error": null,
+      "durationMs": 9424,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "regex",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "no match for /cart\\.py:\\d+/"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": false,
+      "score": 0.6666666666666666
+    },
+    {
+      "caseId": "zero-division",
+      "trial": 3,
+      "output": "## 코드 리뷰: `average_price` 추가\n\n### 🔴 필수 수정\n\n**빈 리스트에서 `ZeroDivisionError` 발생** (cart.py:6)\n\n`items`가 비어 있으면 `len(items) == 0`이라 예외가 납니다. 빈 장바구니는 흔한 상태이므로 처리가 필요합니다.\n\n```python\ndef average_price(items):\n    if not items:\n        return 0.0\n    return total(items) / len(items)\n```\n\n빈 경우에 `0.0`을 반환할지, `None`을 반환할지, 예외를 명시적으로 던질지는 호출하는 쪽 요구사항에 맞춰 결정하세요. 0은 \"평균이 0원\"으로 오해될 수 있어서 `None`이 더 안전할 수도 있습니다.\n\n### 🟡 의미상 확인 필요\n\n**\"평균 가격\"의 정의가 모호합니다.**\n\n현재 구현은 `총액 / 항목 수(len(items))`입니다. 즉 수량(`qty`)을 무시하고 **라인 아이템당 평균 금액**을 계산합니다.\n\n- 예: `[{\"price\": 100, \"qty\": 10}, {\"price\": 200, \"qty\": 1}]` → 현재 결과 `600.0` (총액 1200 / 2)\n- 개당 평균 가격(총액 / 총 수량)이라면 `1200 / 11 ≈ 109.09`\n\n어느 쪽을 의도했는지 함수명이나 docstring에 명확히 하는 것이 좋습니다. \"개당 평균 가격\"이 의도라면:\n\n```python\ndef average_price(items):\n    count = sum(i[\"qty\"] for i in items)\n    if count == 0:\n        return 0.0\n    return total(items) / count\n```\n\n### 🟢 사소한 제안\n\n- 새 함수에 대한 **테스트가 없습니다.** 최소한 빈 리스트, 단일 항목, 수량이 다른 복수 항목 케이스를 추가하세요.\n- docstring이나 타입 힌트(`items: list[dict]` → `float`)를 추가하면 가독성이 좋아집니다.\n- 금액을 다루므로 부동소수점 오차가 문제된다면 `Decimal` 사용도 고려해 볼 만합니다 (현재 범위에서는 선택사항).\n\n### 요약\n\n빈 리스트 처리는 머지 전에 꼭 고쳐야 하고, \"평균\"의 의미(라인당 vs 개당)를 확정한 뒤 테스트를 추가하면 좋겠습니다.",
+      "error": null,
+      "durationMs": 9945,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "zero-division",
+      "trial": 4,
+      "output": "# 코드 리뷰: `average_price` 추가\n\n## 🔴 주요 문제\n\n**1. 빈 리스트일 때 `ZeroDivisionError` 발생 (cart.py:6)**\n`items`가 비어 있으면 `len(items) == 0`이라 예외가 납니다. 빈 장바구니는 흔한 상황이므로 처리가 필요합니다.\n\n```python\ndef average_price(items):\n    if not items:\n        return 0.0\n    return total(items) / len(items)\n```\n빈 경우에 `0.0`을 반환할지, `None`을 반환할지, 예외를 명시적으로 던질지는 호출하는 쪽 요구사항에 맞춰 정하세요.\n\n**2. \"평균 가격\"의 의미가 모호함**\n현재 구현은 `총액 / 항목 수(종류 수)`입니다. 즉 수량(`qty`)을 고려하지 않습니다.\n- 예: `[{\"price\": 10, \"qty\": 9}, {\"price\": 100, \"qty\": 1}]` → 총액 190 / 2 = **95**\n- 하지만 개당 평균 가격은 190 / 10 = **19**\n\n의도가 \"상품 1개당 평균 가격\"이라면 다음처럼 수량 합계로 나누어야 합니다.\n```python\ndef average_price(items):\n    count = sum(i[\"qty\"] for i in items)\n    if count == 0:\n        return 0.0\n    return total(items) / count\n```\n의도가 \"품목당 평균 금액\"이라면 현재 로직이 맞지만, 함수명을 `average_line_total` 등으로 바꾸거나 docstring으로 명확히 해두는 것이 좋습니다.\n\n## 🟡 사소한 제안\n\n- **테스트 누락**: 빈 리스트, 단일 항목, 수량이 서로 다른 여러 항목에 대한 테스트가 없습니다.\n- **Docstring/타입 힌트**: 입력 구조(`price`, `qty` 키)와 반환 의미를 명시하면 좋습니다. 예: `def average_price(items: list[dict]) -> float:`\n- **금액 정밀도**: 가격이 `float`이면 오차가 생길 수 있습니다. 금액을 다룬다면 `Decimal` 또는 정수(원 단위) 사용을 고려하세요.\n\n## 요약\n빈 리스트 처리와 \"평균\"의 정의 명확화, 이 두 가지는 머지 전에 수정하는 것을 권장합니다.",
+      "error": null,
+      "durationMs": 8866,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "zero-division",
+      "trial": 5,
+      "output": "# 코드 리뷰: `average_price` 추가\n\n## 주요 문제\n\n**1. 빈 리스트일 때 `ZeroDivisionError` 발생 (cart.py:6)**\n`items`가 비어 있으면 `len(items) == 0`이라 예외가 발생합니다. 빈 장바구니는 흔한 상태이므로 처리가 필요합니다.\n\n```python\ndef average_price(items):\n    if not items:\n        return 0.0\n    return total(items) / len(items)\n```\n\n빈 경우에 `0.0`을 반환할지, `None`을 반환할지, 예외를 명시적으로 던질지는 호출하는 쪽 요구사항에 맞춰 결정하세요.\n\n**2. \"평균 가격\"의 의미가 모호함**\n현재 구현은 `sum(price * qty) / len(items)`, 즉 **상품 종류 수 기준**의 평균 주문 금액입니다. 예:\n\n- A: 1000원 × 1개, B: 100원 × 9개 → total = 1900, 결과 = 950\n\n하지만 \"평균 가격\"은 보통 아래 둘 중 하나를 의미합니다.\n\n- **개당 평균 가격**: `total(items) / sum(i[\"qty\"] for i in items)` → 190\n- **상품별 단가 평균**: `sum(i[\"price\"] for i in items) / len(items)` → 550\n\n의도에 맞는지 확인하고, 필요하면 함수명이나 docstring으로 명확히 해주세요. 개당 평균을 의도했다면 분모가 0이 되는 경우(전체 수량 0)도 함께 처리해야 합니다.\n\n## 사소한 제안\n\n- **테스트 없음**: 빈 리스트, 단일 항목, 여러 수량 케이스에 대한 테스트를 추가하면 좋겠습니다.\n- **Docstring/타입 힌트**: 반환 타입(`float`)과 빈 입력 시 동작을 명시하면 유지보수에 도움이 됩니다.\n- **금액 정밀도**: 가격이 `float`라면 부동소수점 오차가 생길 수 있습니다. 금액을 다룬다면 `Decimal`이나 정수(원 단위) 사용을 고려하세요.\n\n## 요약\n\n기능 추가 자체는 간단하고 `total` 재사용도 좋습니다. 다만 **빈 리스트 처리**는 반드시 수정이 필요하고, **평균의 정의**는 의도를 확인한 뒤 확정하길 권장합니다.",
+      "error": null,
+      "durationMs": 9098,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"🔴\""
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": false,
+      "score": 0.6666666666666666
+    },
+    {
+      "caseId": "off-by-one",
+      "trial": 1,
+      "output": "**버그 있음 (4번째 줄):** off-by-one 오류입니다.\n\n```python\nend = start + size + 1   # size+1개를 반환함\n```\n\ndocstring은 \"한 페이지에 size개\"라고 했는데, 실제로는 `size + 1`개를 돌려줍니다. 예를 들어 `paginate(list(range(10)), 0, 3)`은 `[0, 1, 2, 3]`을 반환하고, 다음 페이지(`page=1`)는 `[3, 4, 5, 6]`이 되어 항목 3이 중복됩니다.\n\n**수정:**\n\n```python\ndef paginate(items, page, size):\n    \"\"\"page는 0부터 시작. 한 페이지에 size개를 돌려준다.\"\"\"\n    start = page * size\n    end = start + size\n    return items[start:end]\n```\n\n**추가로 확인할 점 (선택):**\n\n- **입력 검증:** `page < 0`이면 음수 인덱스 슬라이싱 때문에 엉뚱한 결과가 나옵니다. `size <= 0`일 때도 빈 리스트나 의도치 않은 값이 나올 수 있어서, 필요하면 `ValueError`를 던지는 것이 안전합니다.\n- **테스트 없음:** 이 PR에는 테스트가 없습니다. 최소한 아래 경우는 추가하면 좋습니다.\n  - 첫 페이지, 중간 페이지\n  - 마지막 페이지(size보다 적게 남은 경우)\n  - 범위를 벗어난 페이지(빈 리스트)\n  - 페이지 간 중복/누락 없음\n\n`+ 1`만 제거하면 핵심 버그는 해결됩니다.",
+      "error": null,
+      "durationMs": 6862,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"🔴\""
+        },
+        {
+          "type": "regex",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "no match for /pager\\.py:\\d+/"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": false,
+      "score": 0.3333333333333333
+    },
+    {
+      "caseId": "off-by-one",
+      "trial": 2,
+      "output": "**버그 있음 — PR 올리기 전에 수정 필요합니다.**\n\n### 🔴 off-by-one (pager.py:4)\n```python\nend = start + size + 1\n```\ndocstring은 \"한 페이지에 size개\"라고 했는데, 실제로는 **size+1개**를 반환합니다. 슬라이스의 end는 exclusive라서 `+ 1`이 필요 없습니다.\n\n예: `paginate(list(range(10)), 0, 3)` → `[0, 1, 2, 3]` (4개). 게다가 다음 페이지(`page=1`)는 `[3, 4, 5, 6]`이라 3이 중복됩니다.\n\n**수정:**\n```python\nend = start + size\n```\n\n### 🟡 입력 검증 (선택)\n- `page < 0`이면 음수 인덱스로 슬라이스되어 엉뚱한 결과가 나옵니다 (예: `page=-1` → 뒤쪽 항목들).\n- `size <= 0`이면 빈 리스트이거나 이상한 결과가 나옵니다 (`size=-1`이면 의도치 않은 슬라이스).\n\n필요하면 이렇게 방어할 수 있습니다:\n```python\nif page < 0 or size <= 0:\n    raise ValueError(\"page must be >= 0 and size must be > 0\")\n```\n\n### 🟡 테스트 없음\n새 파일인데 테스트가 없습니다. 최소한 아래 케이스는 있으면 좋겠습니다:\n- 첫 페이지 / 중간 페이지 → 정확히 `size`개\n- 마지막 페이지 (size보다 적게 남은 경우)\n- 범위를 벗어난 페이지 → `[]`\n- 페이지 간 중복/누락 없음\n\n### 최종 제안\n```python\ndef paginate(items, page, size):\n    \"\"\"page는 0부터 시작. 한 페이지에 size개를 돌려준다.\"\"\"\n    if page < 0 or size <= 0:\n        raise ValueError(\"page must be >= 0 and size must be > 0\")\n    start = page * size\n    return items[start:start + size]\n```\n\n원하시면 테스트 파일도 같이 작성해 드릴게요.",
+      "error": null,
+      "durationMs": 9733,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "off-by-one",
+      "trial": 3,
+      "output": "**버그 있음: off-by-one (pager.py:4)**\n\n```python\nend = start + size + 1   # ← size+1개를 반환함\n```\n\ndocstring은 \"한 페이지에 size개\"라고 했는데, 실제로는 `size + 1`개가 반환됩니다. 또 인접한 페이지끼리 1개씩 겹칩니다. 예를 들어 `size=10`일 때 page 0은 `items[0:11]`, page 1은 `items[10:21]`이라 인덱스 10이 중복됩니다.\n\n**수정:**\n\n```python\ndef paginate(items, page, size):\n    \"\"\"page는 0부터 시작. 한 페이지에 size개를 돌려준다.\"\"\"\n    start = page * size\n    end = start + size\n    return items[start:end]\n```\n\n**추가로 확인하면 좋은 것들:**\n\n1. **입력 검증**: `page < 0`이면 음수 슬라이싱이 되어 엉뚱한 결과가 나옵니다 (예: `page=-1, size=10`이면 `items[-10:0]`은 빈 리스트). `size <= 0`일 때도 의미가 없습니다. 의도적으로 허용하는 게 아니라면 `ValueError`를 던지는 편이 안전합니다.\n2. **범위 초과**: 마지막 페이지를 넘어가면 빈 리스트가 반환됩니다. 파이썬 슬라이싱 특성상 에러는 나지 않는데, 이게 의도한 동작인지 문서화해 두면 좋습니다.\n3. **테스트 없음**: 이 diff에는 테스트가 없습니다. 이번 버그는 경계 케이스 테스트 하나로 바로 잡혔을 것입니다. 예시:\n\n```python\ndef test_paginate():\n    items = list(range(25))\n    assert paginate(items, 0, 10) == list(range(0, 10))\n    assert paginate(items, 1, 10) == list(range(10, 20))\n    assert paginate(items, 2, 10) == list(range(20, 25))  # 마지막 부분 페이지\n    assert paginate(items, 3, 10) == []                    # 범위 초과\n```\n\n`end = start + size`로 고치고 테스트를 추가한 뒤에 PR을 올리시길 권합니다.",
+      "error": null,
+      "durationMs": 9616,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"🔴\""
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": false,
+      "score": 0.6666666666666666
+    },
+    {
+      "caseId": "off-by-one",
+      "trial": 4,
+      "output": "**버그가 있습니다.** `pager.py` 4번째 줄에서 off-by-one 오류가 납니다.\n\n```python\nend = start + size + 1   # ← 한 페이지에 size+1개가 반환됨\n```\n\ndocstring에는 \"한 페이지에 size개를 돌려준다\"고 되어 있지만, 실제로는 `size + 1`개가 반환됩니다. 예를 들어 `paginate(list(range(10)), 0, 3)`은 `[0, 1, 2]`가 아니라 `[0, 1, 2, 3]`을 반환하고, 다음 페이지(`page=1`)는 `[3, 4, 5, 6]`이라 3이 중복됩니다.\n\n**수정:**\n\n```python\ndef paginate(items, page, size):\n    \"\"\"page는 0부터 시작. 한 페이지에 size개를 돌려준다.\"\"\"\n    start = page * size\n    end = start + size\n    return items[start:end]\n```\n\n**추가로 고려할 점 (선택):**\n\n- **입력 검증**: `page < 0`이면 음수 슬라이싱이 되어 의도치 않은 결과가 나옵니다. `size <= 0`도 마찬가지입니다(`size=0`이면 항상 빈 리스트, 음수면 이상한 슬라이스). `ValueError`를 던지는 편이 안전합니다.\n- **테스트 부재**: 이 diff에는 테스트가 없습니다. 이번 버그는 간단한 테스트로 바로 잡혔을 겁니다. 최소한 다음 케이스는 추가하는 걸 권합니다.\n  - 첫 페이지 / 중간 페이지 / 마지막 불완전 페이지 / 범위를 벗어난 페이지(빈 리스트)\n  - 페이지 간 중복·누락이 없는지 (`sum(pages, []) == items`)\n\n원하시면 수정과 테스트 파일(`test_pager.py`)을 바로 작성해 드릴게요.",
+      "error": null,
+      "durationMs": 7636,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"🔴\""
+        },
+        {
+          "type": "regex",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "no match for /pager\\.py:\\d+/"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": false,
+      "score": 0.3333333333333333
+    },
+    {
+      "caseId": "off-by-one",
+      "trial": 5,
+      "output": "**버그가 있어요.** 4번 줄의 `end = start + size + 1`이 off-by-one입니다.\n\ndocstring에는 \"한 페이지에 size개\"라고 되어 있는데, 슬라이스 `items[start:end]`는 `end`를 포함하지 않으므로 `end = start + size`여야 합니다. 지금 코드는 페이지마다 `size + 1`개를 반환하고, 인접한 페이지끼리 한 항목씩 겹칩니다.\n\n예: `items = [0,1,2,3,4,5]`, `size=2`\n- `page=0` → `[0:3]` → `[0, 1, 2]` (3개)\n- `page=1` → `[2:5]` → `[2, 3, 4]` (2가 중복)\n\n**수정안**\n```python\ndef paginate(items, page, size):\n    \"\"\"page는 0부터 시작. 한 페이지에 size개를 돌려준다.\"\"\"\n    start = page * size\n    end = start + size\n    return items[start:end]\n```\n\n**추가로 확인하면 좋은 점**\n- **입력 검증**: `page < 0`이면 음수 인덱스로 슬라이스되어 엉뚱한 결과가 나옵니다. `size <= 0`일 때도 의미 없는 결과(빈 리스트 등)가 나오니, `ValueError`를 던지거나 의도를 문서화하는 게 좋습니다.\n- **테스트 부재**: diff에 테스트가 없습니다. 이 버그는 간단한 테스트로 바로 잡혔을 겁니다. 최소한 아래 케이스는 추가하는 걸 권장합니다.\n  - 첫 페이지, 중간 페이지\n  - 마지막 불완전 페이지 (예: 5개 항목, size=2, page=2 → 1개)\n  - 범위를 벗어난 페이지 (빈 리스트)\n  - 페이지 간 중복이 없는지\n\n수정 후 PR 올리셔도 될 것 같아요. 원하시면 수정과 테스트 파일 작성을 바로 해드릴게요.",
+      "error": null,
+      "durationMs": 8406,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"🔴\""
+        },
+        {
+          "type": "regex",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "no match for /pager\\.py:\\d+/"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": false,
+      "score": 0.3333333333333333
+    }
+  ]
+}

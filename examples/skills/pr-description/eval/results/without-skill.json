@@ -1,0 +1,469 @@
+{
+  "version": 1,
+  "suite": "pr-description",
+  "startedAt": "2026-11-16T08:27:46.771Z",
+  "finishedAt": "2026-11-16T08:28:09.027Z",
+  "repeat": 5,
+  "trials": [
+    {
+      "caseId": "no-tests-run",
+      "trial": 1,
+      "output": "## PR 제목\nfeat(cart): 평균 가격 계산 및 할인 적용 함수 추가\n\n## 요약\n장바구니 모듈(`cart.py`)에 평균 가격을 계산하는 `average_price`와 할인을 적용하는 `apply_discount` 함수를 추가했습니다.\n\n## 변경 사항\n- `average_price(items)`: 장바구니 전체 금액(`total`)을 상품 항목 수(`len(items)`)로 나눈 값을 반환합니다.\n- `apply_discount(amount, rate)`: 금액에서 `rate` 비율만큼 할인한 금액을 반환합니다. (예: `rate=0.1` → 10% 할인)\n\n## 리뷰 시 참고 사항\n- **빈 장바구니 처리**: `average_price`는 `items`가 비어 있으면 `ZeroDivisionError`가 발생합니다. 빈 리스트일 때 `0`을 반환할지, 예외를 명시적으로 던질지 결정이 필요합니다.\n- **평균의 정의**: 현재는 \"항목 수\" 기준 평균(총액 ÷ 항목 종류 수)입니다. 수량(`qty`)을 반영한 개당 평균 가격을 의도했다면 `sum(i[\"qty\"])`로 나누도록 수정해야 합니다.\n- **할인율 검증 없음**: `apply_discount`는 `rate`가 0~1 범위인지 검사하지 않습니다. 음수이거나 1을 초과하면 금액이 증가하거나 음수가 될 수 있습니다.\n- **테스트 없음**: 이번 diff에는 테스트가 포함되어 있지 않습니다.\n\n## 테스트\n- [ ] 일반 장바구니에서 `average_price` 결과 확인\n- [ ] 빈 장바구니 케이스 확인\n- [ ] `apply_discount`의 `rate=0`, `rate=1`, 경계값 외 입력 확인\n\n원하시면 위 이슈(빈 장바구니, 할인율 검증)를 반영한 코드 수정안과 테스트도 작성해 드릴게요.",
+      "error": null,
+      "durationMs": 7318,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 배경\""
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 변경 내용\""
+        },
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 리뷰 포인트\""
+        },
+        {
+          "type": "not-contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "absent"
+        }
+      ],
+      "pass": false,
+      "score": 0.4
+    },
+    {
+      "caseId": "no-tests-run",
+      "trial": 2,
+      "output": "## PR 제목\nfeat(cart): 평균 가격 계산 및 할인 적용 함수 추가\n\n## 개요\n장바구니 모듈(`cart.py`)에 평균 가격을 구하는 `average_price`와 할인을 적용하는 `apply_discount` 함수를 추가합니다.\n\n## 변경 사항\n- **`average_price(items)`**: 장바구니 전체 금액(`total`)을 상품 항목 수(`len(items)`)로 나눈 값을 반환합니다.\n- **`apply_discount(amount, rate)`**: 금액에서 `amount * rate`만큼 차감한 금액을 반환합니다. (`rate`는 0~1 사이의 비율, 예: 0.1 = 10%)\n\n## 리뷰 시 확인해 주세요\n- **빈 장바구니 처리**: `items`가 비어 있으면 `average_price`에서 `ZeroDivisionError`가 발생합니다. 0을 반환할지, 예외를 명시적으로 던질지 결정이 필요합니다.\n- **평균의 정의**: 현재는 \"항목 종류 수\" 기준 평균(총액 ÷ `len(items)`)입니다. 수량(`qty`)을 반영한 개당 평균 가격(총액 ÷ 총 수량)이 의도라면 수정이 필요합니다.\n- **`rate` 검증 없음**: 0 미만이거나 1 초과인 값에 대한 검증이 없어, 음수 금액이나 가격 증가가 발생할 수 있습니다.\n- **테스트 미포함**: 이번 PR에는 테스트가 포함되어 있지 않습니다.\n\n## 테스트\n- [ ] `average_price` 정상 케이스 및 빈 리스트 케이스\n- [ ] `apply_discount` 정상 케이스 (`rate=0`, `rate=1`, 일반 비율)\n\n---\n\n원하시면 빈 장바구니/`rate` 검증 처리와 테스트 코드까지 같이 추가해 드릴게요.",
+      "error": null,
+      "durationMs": 7200,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 배경\""
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 변경 내용\""
+        },
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 리뷰 포인트\""
+        },
+        {
+          "type": "not-contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "absent"
+        }
+      ],
+      "pass": false,
+      "score": 0.4
+    },
+    {
+      "caseId": "no-tests-run",
+      "trial": 3,
+      "output": "## PR 제목\nfeat(cart): 평균 가격 계산 및 할인 적용 함수 추가\n\n## 개요\n장바구니 모듈(`cart.py`)에 평균 가격을 계산하는 `average_price`와 할인을 적용하는 `apply_discount` 함수를 추가합니다.\n\n## 변경 사항\n- **`average_price(items)`**: 전체 합계(`total`)를 상품 개수로 나눈 값을 반환합니다.\n- **`apply_discount(amount, rate)`**: 금액에서 `amount * rate`만큼 차감한 값을 반환합니다. (`rate`는 0~1 사이의 비율, 예: 0.1 = 10%)\n\n## 리뷰 시 확인해 주세요\n- **빈 장바구니 처리**: `average_price`에 빈 리스트가 전달되면 `ZeroDivisionError`가 발생합니다. 0을 반환할지, 예외를 명시적으로 던질지 결정이 필요합니다.\n- **`average_price`의 의미**: 현재는 `total / len(items)`, 즉 상품 종류당 평균 금액입니다. 수량(`qty`)을 반영한 개당 평균 가격을 의도했다면 `total / sum(i[\"qty\"] for i in items)`로 바꿔야 합니다.\n- **`rate` 검증 없음**: 0~1 범위를 벗어나는 값(음수, 1 초과)이 들어와도 그대로 계산됩니다. 결과가 음수가 되거나 금액이 늘어날 수 있습니다.\n- **부동소수점**: 금액을 `float`로 계산하므로 반올림 오차가 생길 수 있습니다. 통화 계산에 정밀도가 필요하면 `Decimal` 사용을 고려해 볼 수 있습니다.\n- **테스트 없음**: 이번 PR에는 테스트가 포함되어 있지 않습니다.\n\n## 테스트\n- [ ] `average_price` 정상 케이스 및 빈 리스트 케이스\n- [ ] `apply_discount`의 경계값 (`rate=0`, `rate=1`, 범위 밖 값)\n\n---\n\n위 \"리뷰 시 확인해 주세요\" 항목은 diff를 보고 제가 짚은 잠재 이슈입니다. 이미 의도된 동작이라면 해당 항목은 지우셔도 됩니다. 원하시면 빈 리스트 처리와 `rate` 검증, 테스트 코드까지 같이 작성해 드릴게요.",
+      "error": null,
+      "durationMs": 8449,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 배경\""
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 변경 내용\""
+        },
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 리뷰 포인트\""
+        },
+        {
+          "type": "not-contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "absent"
+        }
+      ],
+      "pass": false,
+      "score": 0.4
+    },
+    {
+      "caseId": "no-tests-run",
+      "trial": 4,
+      "output": "## PR 제목\nfeat(cart): 평균 가격 계산 및 할인 적용 함수 추가\n\n## 요약\n장바구니 모듈(`cart.py`)에 평균 가격을 구하는 `average_price`와 할인 금액을 계산하는 `apply_discount` 함수를 추가합니다.\n\n## 변경 사항\n- `average_price(items)`: 장바구니 전체 금액(`total`)을 상품 개수(`len(items)`)로 나눈 값을 반환합니다.\n- `apply_discount(amount, rate)`: `amount`에서 `rate`(비율)만큼 할인한 금액을 반환합니다. 예: `rate=0.1`이면 10% 할인.\n\n## 리뷰 시 참고할 점\n- **빈 장바구니**: `average_price([])`는 `len(items) == 0`이라 `ZeroDivisionError`가 발생합니다. 빈 리스트일 때 `0`을 반환할지, 예외를 명시적으로 던질지 정해야 합니다.\n- **평균 기준**: 현재는 상품 종류 수(`len(items)`)로 나눕니다. 수량(`qty`)을 반영한 개당 평균 가격이 필요하다면 `sum(i[\"qty\"] for i in items)`로 나눠야 합니다.\n- **할인율 검증**: `apply_discount`는 `rate` 범위(0~1)를 검증하지 않습니다. 음수이거나 1을 초과하면 금액이 늘어나거나 음수가 될 수 있습니다.\n- **테스트**: 이 PR에는 테스트가 포함되어 있지 않습니다. 위 경계 케이스에 대한 테스트 추가를 권장합니다.\n\n## 테스트 방법\n- [ ] `average_price`에 여러 상품을 넣었을 때 기대한 평균이 나오는지 확인\n- [ ] `apply_discount`에서 `rate=0`, `rate=0.1`, `rate=1`일 때 결과 확인\n- [ ] 빈 장바구니 입력 시 동작 확인\n\n---\n\n원하시면 빈 리스트 처리와 `rate` 검증 코드, 그리고 테스트 코드도 같이 작성해 드릴게요.",
+      "error": null,
+      "durationMs": 7511,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 배경\""
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 변경 내용\""
+        },
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 리뷰 포인트\""
+        },
+        {
+          "type": "not-contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "absent"
+        }
+      ],
+      "pass": false,
+      "score": 0.4
+    },
+    {
+      "caseId": "no-tests-run",
+      "trial": 5,
+      "output": "## 제목\nfeat(cart): 평균 가격 계산 및 할인 적용 함수 추가\n\n## 요약\n장바구니 모듈(`cart.py`)에 평균 가격 계산과 할인 적용을 위한 함수 두 개를 추가합니다.\n\n## 변경 사항\n- `average_price(items)`: 장바구니 전체 금액(`total`)을 상품 항목 수(`len(items)`)로 나눈 값을 반환합니다.\n- `apply_discount(amount, rate)`: 금액에서 할인율(`rate`)만큼 차감한 금액을 반환합니다. (예: `rate=0.1` → 10% 할인)\n\n## 리뷰 시 확인해 주세요\n- **빈 장바구니 처리**: `average_price([])`를 호출하면 `ZeroDivisionError`가 발생합니다. 빈 리스트일 때 `0`을 반환할지, 예외를 던질지 결정이 필요합니다.\n- **평균의 정의**: 현재는 `총액 / 항목 수`이며 수량(`qty`)은 고려하지 않습니다. 개당 평균 가격(`총액 / 총 수량`)을 의도하신 거라면 수정이 필요합니다.\n- **할인율 검증 없음**: `rate`가 0~1 범위를 벗어나는 경우(음수, 1 초과)에 대한 검증이 없습니다.\n- **테스트 없음**: 이번 PR에는 테스트가 포함되어 있지 않습니다.\n\n## 테스트\n- [ ] `average_price` 단위 테스트 (일반 케이스, 빈 장바구니)\n- [ ] `apply_discount` 단위 테스트 (0%, 일반 할인율, 100%)\n\n---\n\ndiff를 보면 빈 장바구니 케이스와 `rate` 검증이 빠져 있어서, 머지 전에 처리하거나 PR에서 의도를 명시해 두시는 게 좋겠습니다. 원하시면 해당 부분 수정이나 테스트 코드도 작성해 드릴게요.",
+      "error": null,
+      "durationMs": 7836,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 배경\""
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 변경 내용\""
+        },
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 리뷰 포인트\""
+        },
+        {
+          "type": "not-contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "absent"
+        }
+      ],
+      "pass": false,
+      "score": 0.4
+    },
+    {
+      "caseId": "tests-run",
+      "trial": 1,
+      "output": "## PR 제목\nfeat(cart): 평균 가격 및 할인 적용 함수 추가\n\n## 요약\n`cart.py`에 장바구니 계산용 헬퍼 함수 두 개를 추가합니다.\n\n## 변경 사항\n- `average_price(items)`: 장바구니 상품의 평균 가격을 반환합니다. 총액(`total`)을 상품 개수(`len(items)`)로 나눕니다.\n- `apply_discount(amount, rate)`: 금액에 할인율을 적용한 값(`amount - amount * rate`)을 반환합니다. `rate`는 0~1 사이의 비율입니다 (예: 0.1 = 10%).\n\n## 테스트\n- `pytest tests/test_cart.py` 실행, 8개 모두 통과\n\n## 리뷰 시 참고할 점\n- `average_price`는 `items`가 빈 리스트일 때 `ZeroDivisionError`가 발생합니다. 빈 장바구니를 어떻게 처리할지(0 반환, 예외 등) 정해야 한다면 의견 부탁드립니다.\n- 평균은 상품 종류 수(`len(items)`) 기준이며, 수량(`qty`)을 반영한 개당 평균이 아닙니다. 의도한 동작인지 확인 부탁드립니다.\n- `apply_discount`는 `rate` 범위(0~1)를 검증하지 않습니다.\n\n---\n\ndiff상 테스트 파일 변경은 보이지 않습니다. 새 함수들에 대한 테스트가 기존 8개에 포함돼 있는지 확인해 보세요. 포함돼 있지 않다면 빈 리스트 케이스 등을 포함한 테스트 추가를 권장합니다.",
+      "error": null,
+      "durationMs": 6677,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 배경\""
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 변경 내용\""
+        },
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 리뷰 포인트\""
+        },
+        {
+          "type": "regex",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "no match for /\\[x\\][^\\n]*pytest/i"
+        }
+      ],
+      "pass": false,
+      "score": 0.2
+    },
+    {
+      "caseId": "tests-run",
+      "trial": 2,
+      "output": "## PR 제목\nfeat(cart): 평균 가격 계산 및 할인 적용 함수 추가\n\n## 변경 내용\n`cart.py`에 장바구니 계산용 함수 두 개를 추가했습니다.\n\n- **`average_price(items)`**: 장바구니 전체 금액(`total`)을 상품 항목 수(`len(items)`)로 나눈 평균 가격을 반환합니다.\n- **`apply_discount(amount, rate)`**: 금액에서 `amount * rate`만큼 할인한 값을 반환합니다. (`rate`는 0~1 사이의 비율, 예: 0.1 = 10%)\n\n## 참고 사항\n- `average_price`는 항목 수(`len(items)`)로 나누기 때문에, 수량(`qty`)이 아닌 **상품 종류 수** 기준의 평균입니다.\n- `items`가 빈 리스트이면 `ZeroDivisionError`가 발생합니다. 빈 장바구니 처리 방식(0 반환 또는 예외 처리)은 리뷰에서 논의하고 싶습니다.\n- `apply_discount`는 `rate` 범위(0~1)를 검증하지 않습니다.\n\n## 테스트\n- `pytest tests/test_cart.py` 실행, 8개 테스트 모두 통과\n\n---\n\n참고로 diff에는 `tests/` 변경이 포함되어 있지 않아서, 위 테스트 8개가 새 함수들을 다루는지는 확인하지 못했습니다. 새 함수에 대한 테스트가 없다면 빈 장바구니나 `rate` 경계값 케이스를 추가하는 것을 추천드려요. 필요하면 테스트 코드도 작성해 드릴게요.",
+      "error": null,
+      "durationMs": 8208,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 배경\""
+        },
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 리뷰 포인트\""
+        },
+        {
+          "type": "regex",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "no match for /\\[x\\][^\\n]*pytest/i"
+        }
+      ],
+      "pass": false,
+      "score": 0.4
+    },
+    {
+      "caseId": "tests-run",
+      "trial": 3,
+      "output": "## PR 제목\nfeat(cart): 평균 가격 계산 및 할인 적용 함수 추가\n\n## 요약\n장바구니 모듈(`cart.py`)에 두 가지 유틸 함수를 추가했습니다.\n\n- `average_price(items)`: 장바구니 전체 금액(`total`)을 상품 개수(`len(items)`)로 나눈 평균 가격을 반환합니다.\n- `apply_discount(amount, rate)`: 금액에 할인율(`rate`)을 적용한 결과를 반환합니다. (`amount - amount * rate`)\n\n## 변경 사항\n- `cart.py`\n  - `average_price` 추가\n  - `apply_discount` 추가\n\n## 테스트\n- `pytest tests/test_cart.py` 실행, 8개 테스트 모두 통과\n\n## 리뷰 시 확인해 주세요\n- **빈 장바구니 처리**: `average_price([])`는 `ZeroDivisionError`가 발생합니다. 빈 리스트일 때 0을 반환할지, 예외를 명시적으로 던질지 정책을 정하면 좋겠습니다.\n- **평균 계산 기준**: 현재는 `total / len(items)`로, 수량(`qty`)이 아닌 상품 종류 수 기준입니다. 예를 들어 단가 1000원짜리 3개 + 2000원짜리 1개면 평균은 (3000+2000)/2 = 2500원입니다. 개당 평균(총 수량 기준)이 의도라면 수정이 필요합니다.\n- **할인율 검증 없음**: `rate`는 0~1 사이의 비율을 가정하며(예: 10% → `0.1`), 범위 밖의 값(음수, 1 초과)에 대한 검증은 없습니다.\n\n---\n\n참고: diff에는 테스트 파일 변경이 포함되어 있지 않습니다. 기존 8개 테스트가 새 함수를 커버하는지 확인이 필요하고, 그렇지 않다면 `average_price`와 `apply_discount`에 대한 테스트 추가를 권장합니다. 원하시면 위 엣지 케이스를 반영한 테스트나 코드 수정안도 작성해 드릴게요.",
+      "error": null,
+      "durationMs": 10050,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 배경\""
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 변경 내용\""
+        },
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 리뷰 포인트\""
+        },
+        {
+          "type": "regex",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "no match for /\\[x\\][^\\n]*pytest/i"
+        }
+      ],
+      "pass": false,
+      "score": 0.2
+    },
+    {
+      "caseId": "tests-run",
+      "trial": 4,
+      "output": "## PR 제목\nfeat(cart): 평균 가격 및 할인 계산 함수 추가\n\n## 요약\n장바구니 모듈(`cart.py`)에 두 가지 유틸 함수를 추가했습니다.\n\n- `average_price(items)`: 장바구니 상품들의 평균 가격을 계산합니다. (`total(items) / len(items)`)\n- `apply_discount(amount, rate)`: 금액에 할인율을 적용한 값을 반환합니다. (`amount - amount * rate`, 예: `rate=0.1`이면 10% 할인)\n\n## 변경 사항\n- `cart.py`\n  - `average_price` 추가\n  - `apply_discount` 추가\n\n## 테스트\n- `pytest tests/test_cart.py` 실행 → 8개 모두 통과\n\n## 리뷰 시 참고할 점\n- `average_price`는 `items`가 빈 리스트면 `ZeroDivisionError`가 발생합니다. 빈 장바구니를 어떻게 처리할지(0 반환, 예외 등) 정책 확인이 필요합니다.\n- `average_price`는 상품 단가의 평균이 아니라 `total / len(items)`, 즉 상품 종류(라인 아이템) 수 기준의 평균 금액입니다. 수량(`qty`)은 총액에는 반영되지만 나누는 값에는 반영되지 않습니다. 의도한 정의인지 확인 부탁드립니다.\n- `apply_discount`는 `rate`의 범위(0~1)를 검증하지 않습니다. 음수나 1 초과 값이 들어오면 금액이 증가하거나 음수가 될 수 있습니다.\n\n---\n\n참고: diff 기준으로 새 함수에 대한 테스트가 추가되었는지는 확인되지 않습니다(변경된 파일이 `cart.py`뿐). 기존 8개 테스트가 새 함수를 다루는지 확인해 보시고, 아니라면 빈 리스트와 `rate` 경계값 케이스를 포함한 테스트 추가를 권장합니다.",
+      "error": null,
+      "durationMs": 8260,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 배경\""
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 변경 내용\""
+        },
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 리뷰 포인트\""
+        },
+        {
+          "type": "regex",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "no match for /\\[x\\][^\\n]*pytest/i"
+        }
+      ],
+      "pass": false,
+      "score": 0.2
+    },
+    {
+      "caseId": "tests-run",
+      "trial": 5,
+      "output": "## PR 제목\nfeat(cart): 평균 가격 계산 및 할인 적용 함수 추가\n\n## 요약\n`cart.py`에 장바구니 계산용 함수 두 개를 추가합니다.\n\n- `average_price(items)`: 장바구니 상품들의 평균 가격을 반환합니다. 내부적으로 `total(items) / len(items)`로 계산합니다.\n- `apply_discount(amount, rate)`: 금액에 할인율을 적용한 값을 반환합니다. (`amount - amount * rate`, 예: `rate=0.1`이면 10% 할인)\n\n## 변경 사항\n- `cart.py`\n  - `average_price` 추가\n  - `apply_discount` 추가\n\n## 테스트\n- `pytest tests/test_cart.py` 실행, 8개 테스트 모두 통과\n\n## 리뷰 시 확인해주세요\n- `average_price`는 `items`가 빈 리스트일 때 `ZeroDivisionError`가 발생합니다. 빈 장바구니에서 0을 반환할지, 예외를 그대로 둘지 정해야 할 것 같습니다.\n- 평균은 `price * qty`의 합을 상품 종류 수(`len(items)`)로 나눈 값입니다. 총 수량 기준 평균이 아니라 상품 항목당 평균이라는 점을 확인해주세요.\n- `apply_discount`는 `rate`의 범위(0~1)를 검증하지 않습니다. 음수나 1 초과 값이 들어오면 그대로 계산됩니다.\n\n---\n\n참고로 diff에는 `cart.py`만 있고 테스트 파일 변경은 보이지 않습니다. 새 함수들에 대한 테스트가 기존 8개에 포함되어 있는지 확인해보세요. 없다면 빈 장바구니 케이스와 할인율 경계값(0, 1) 테스트를 추가하는 것도 좋겠습니다.",
+      "error": null,
+      "durationMs": 7028,
+      "assertions": [
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 배경\""
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 변경 내용\""
+        },
+        {
+          "type": "contains",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "found"
+        },
+        {
+          "type": "contains",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "missing \"## 리뷰 포인트\""
+        },
+        {
+          "type": "regex",
+          "pass": false,
+          "score": 0,
+          "weight": 1,
+          "reason": "no match for /\\[x\\][^\\n]*pytest/i"
+        }
+      ],
+      "pass": false,
+      "score": 0.2
+    }
+  ]
+}

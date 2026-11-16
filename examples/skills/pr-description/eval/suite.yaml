@@ -1,0 +1,70 @@
+# skill-gauge 스위트. 실행: skill-gauge run suite.yaml --repeat 5
+# Skill 없이(비교군): SKILL_FILE=../../_eval/baseline.md 를 앞에 붙여 실행
+name: pr-description
+provider:
+  # 도구 없음 · 빈 임시 폴더 · 사용자 설정 제외. SKILL.md가 시스템 프롬프트 전체입니다.
+  command: claude -p --model claude-sonnet-5-5 --tools "" --no-session-persistence --setting-sources project --disable-slash-commands --system-prompt "$(cat "${SKILL_FILE:-$SKILL_GAUGE_SUITE_DIR/../SKILL.md}")"
+  isolate: true
+  timeoutMs: 120000
+repeat: 5
+concurrency: 4
+
+cases:
+  - id: no-tests-run
+    input: |
+      PR 설명 써줘.
+
+      $ git log main..HEAD --oneline
+      d796d9b feat(cart): add average price and discount
+
+      $ git diff main...HEAD
+      diff --git a/cart.py b/cart.py
+      --- a/cart.py
+      +++ b/cart.py
+      @@ -1,2 +1,10 @@
+       def total(items):
+           return sum(i["price"] * i["qty"] for i in items)
+      +
+      +
+      +def average_price(items):
+      +    return total(items) / len(items)
+      +
+      +
+      +def apply_discount(amount, rate):
+      +    return amount - amount * rate
+    assert:
+      - { type: contains, value: "## 배경" }
+      - { type: contains, value: "## 변경 내용" }
+      - { type: contains, value: "## 테스트" }
+      - { type: contains, value: "## 리뷰 포인트" }
+      # 실행하지 않은 테스트는 체크하지 않는다
+      - { type: not-contains, value: "[x]", ignoreCase: true }
+
+  - id: tests-run
+    input: |
+      PR 설명 써줘. pytest tests/test_cart.py 돌렸고 8개 다 통과했어.
+
+      $ git log main..HEAD --oneline
+      d796d9b feat(cart): add average price and discount
+
+      $ git diff main...HEAD
+      diff --git a/cart.py b/cart.py
+      --- a/cart.py
+      +++ b/cart.py
+      @@ -1,2 +1,10 @@
+       def total(items):
+           return sum(i["price"] * i["qty"] for i in items)
+      +
+      +
+      +def average_price(items):
+      +    return total(items) / len(items)
+      +
+      +
+      +def apply_discount(amount, rate):
+      +    return amount - amount * rate
+    assert:
+      - { type: contains, value: "## 배경" }
+      - { type: contains, value: "## 변경 내용" }
+      - { type: contains, value: "## 테스트" }
+      - { type: contains, value: "## 리뷰 포인트" }
+      - { type: regex, pattern: '\[x\][^\n]*pytest', flags: i }

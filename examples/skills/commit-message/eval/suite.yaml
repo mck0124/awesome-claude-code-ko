@@ -1,0 +1,88 @@
+# skill-gauge 스위트. 실행: skill-gauge run suite.yaml --repeat 5
+# Skill 없이(비교군): SKILL_FILE=../../_eval/baseline.md 를 앞에 붙여 실행
+name: commit-message
+provider:
+  # 도구 없음 · 빈 임시 폴더 · 사용자 설정 제외. SKILL.md가 시스템 프롬프트 전체입니다.
+  command: claude -p --model claude-sonnet-5-5 --tools "" --no-session-persistence --setting-sources project --disable-slash-commands --system-prompt "$(cat "${SKILL_FILE:-$SKILL_GAUGE_SUITE_DIR/../SKILL.md}")"
+  isolate: true
+  timeoutMs: 120000
+repeat: 5
+concurrency: 4
+
+cases:
+  - id: feat-scope
+    input: |
+      커밋 메시지 써줘.
+
+      $ git diff --staged
+      diff --git a/src/cart/shipping.py b/src/cart/shipping.py
+      new file mode 100644
+      --- /dev/null
+      +++ b/src/cart/shipping.py
+      @@ -0,0 +1,2 @@
+      +def is_free_shipping(amount):
+      +    return amount >= 50000
+
+      $ git log -5 --oneline
+      a1b2c3d feat(cart): add discount calculation
+      9f8e7d6 fix(api): handle empty order list
+      4c5b6a7 chore: bump dependencies
+    assert:
+      # type(scope): 요약 50자 이내, 마침표 없음
+      - { type: regex, pattern: '^feat(\([\w-]+\))?: .{0,49}[^.\n]$', flags: m }
+
+  - id: korean-log
+    input: |
+      커밋 메시지 써줘.
+
+      $ git diff --staged
+      diff --git a/src/parser/gpx.py b/src/parser/gpx.py
+      --- a/src/parser/gpx.py
+      +++ b/src/parser/gpx.py
+      @@ -10,6 +10,8 @@ def parse(path):
+           points = []
+           for node in root.iter("trkpt"):
+      +        if node.find("time") is None:
+      +            continue
+               points.append(to_point(node))
+
+      $ git log -5 --oneline
+      1a2b3c4 feat(parser): 고도 필드 파싱 추가
+      5d6e7f8 fix(cli): 빈 입력에서 종료 코드 수정
+      9a8b7c6 docs: 설치 방법 보완
+    assert:
+      # 최근 로그가 한국어면 한국어로, 요약 50자 이내
+      - { type: regex, pattern: '^fix(\([\w-]+\))?: .{1,50}$', flags: m }
+      - { type: regex, pattern: '^fix(\([\w-]+\))?: .*[가-힣]', flags: m }
+
+  - id: mixed-change
+    input: |
+      커밋 메시지 써줘.
+
+      $ git diff --staged
+      diff --git a/src/parser/gpx.py b/src/parser/gpx.py
+      --- a/src/parser/gpx.py
+      +++ b/src/parser/gpx.py
+      @@ -10,6 +10,8 @@ def parse(path):
+           for node in root.iter("trkpt"):
+      +        if node.find("time") is None:
+      +            continue
+               points.append(to_point(node))
+      diff --git a/src/cli/export.py b/src/cli/export.py
+      new file mode 100644
+      --- /dev/null
+      +++ b/src/cli/export.py
+      @@ -0,0 +1,6 @@
+      +import csv
+      +
+      +def export_csv(points, path):
+      +    with open(path, "w", newline="") as f:
+      +        w = csv.writer(f)
+      +        w.writerows((p.lat, p.lon) for p in points)
+
+      $ git log -5 --oneline
+      a1b2c3d feat(parser): add elevation field
+      9f8e7d6 fix(cli): correct exit code on empty input
+    assert:
+      # 목적이 다른 변경이 섞이면 나눠서 커밋하자고 제안
+      - { type: regex, pattern: '나눠|나누|분리|따로|쪼개' }

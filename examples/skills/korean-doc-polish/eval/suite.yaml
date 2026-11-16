@@ -1,0 +1,39 @@
+# skill-gauge 스위트. 실행: skill-gauge run suite.yaml --repeat 5
+# Skill 없이(비교군): SKILL_FILE=../../_eval/baseline.md 를 앞에 붙여 실행
+name: korean-doc-polish
+provider:
+  # 도구 없음 · 빈 임시 폴더 · 사용자 설정 제외. SKILL.md가 시스템 프롬프트 전체입니다.
+  command: claude -p --model claude-sonnet-5-5 --tools "" --no-session-persistence --setting-sources project --disable-slash-commands --system-prompt "$(cat "${SKILL_FILE:-$SKILL_GAUGE_SUITE_DIR/../SKILL.md}")"
+  isolate: true
+  timeoutMs: 120000
+repeat: 5
+concurrency: 4
+
+cases:
+  - id: translationese
+    input: |
+      아래 문서 다듬어줘.
+
+      # 설치 가이드
+
+      이 도구는 김민수에 의해 만들어진 CLI이며, 설정 파일을 읽는 것이 가능하다. 에이전트는 설정을 가지고 있고, agent가 실행되어질 때 설정 파일이 읽혀지게 되며 그 후에 사용자에 의해 지정된 명령이 수행되어지는 구조를 가지고 있다.
+
+      ```bash
+      pip install mytool
+      ```
+    assert:
+      # 변경 전/후를 표로 보여 준다
+      - { type: regex, pattern: '\|[^\n]+\|[^\n]+\|\n\|[ :|-]+\|' }
+      - { type: contains, value: "김민수가 만든" }
+
+  - id: uncertain-fact
+    input: |
+      아래 문서 교정해줘.
+
+      # 소개
+
+      이 라이브러리는 2015년에 구글에 의해 만들어졌으며, 다른 모든 라이브러리보다 10배 빠른 속도를 가지고 있다. 설정을 하는 것이 가능하며 플러그인에 의해 확장되어질 수 있다.
+    assert:
+      - { type: regex, pattern: '\|[^\n]+\|[^\n]+\|\n\|[ :|-]+\|' }
+      # 사실이 불확실한 문장은 "확인 필요"로 따로 모은다
+      - { type: contains, value: "확인 필요" }

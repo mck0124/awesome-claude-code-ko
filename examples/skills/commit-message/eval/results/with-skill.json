@@ -1,0 +1,314 @@
+{
+  "version": 1,
+  "suite": "commit-message",
+  "startedAt": "2026-11-16T08:24:34.562Z",
+  "finishedAt": "2026-11-16T08:25:07.463Z",
+  "repeat": 5,
+  "trials": [
+    {
+      "caseId": "feat-scope",
+      "trial": 1,
+      "output": "제안하는 커밋 메시지입니다. 최근 로그가 영어 + 명령형이라 같은 스타일로 맞췄습니다.\n\n```\nfeat(cart): add free shipping eligibility check\n\nAllow the cart to determine whether an order qualifies for free\nshipping, using a 50,000 threshold.\n```\n\n변경이 `src/cart/shipping.py` 하나이고 목적도 하나라 커밋을 나눌 필요는 없어 보입니다.\n\n참고로 현재 작업 디렉터리는 git 저장소가 아니라고 나와서, 직접 커밋을 실행하려면 저장소 경로를 알려 주셔야 합니다. 이 메시지로 커밋할까요? 승인해 주시면 진행하겠습니다. (원하시면 한국어 버전이나 문구 수정도 가능합니다.)",
+      "error": null,
+      "durationMs": 5228,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "feat-scope",
+      "trial": 2,
+      "output": "스테이지된 변경은 `shipping.py` 추가 하나뿐이라 커밋 하나로 충분합니다. 최근 로그가 영어 + Conventional Commits 형식이라 영어로 썼습니다.\n\n```\nfeat(cart): add free shipping eligibility check\n\nCentralize the free shipping rule (orders of 50,000 or more)\nin one helper so the cart logic doesn't duplicate the threshold.\n```\n\n본문의 \"왜\"는 diff만 보고 짐작한 내용입니다. 실제 배경이 다르면 알려 주세요. 예를 들어 프로모션 요구사항이나 이슈 번호가 있으면 반영하겠습니다.\n\n현재 작업 디렉터리는 git 저장소가 아니어서 여기서는 `git commit`을 실행할 수 없습니다. 이 메시지로 커밋하길 원하시면 승인해 주시고, 실제 저장소 경로를 알려 주세요. push는 하지 않습니다.",
+      "error": null,
+      "durationMs": 7015,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "feat-scope",
+      "trial": 3,
+      "output": "제안하는 커밋 메시지입니다.\n\n```\nfeat(cart): add free shipping eligibility check\n\n주문 금액이 5만 원 이상이면 무료 배송 대상으로 판단하는 함수가 필요해 추가\n```\n\n참고:\n- 최근 로그가 영어 제목이라 제목은 영어로 맞췄고, 본문은 설명을 위해 한국어로 썼습니다. 본문도 영어로 통일하길 원하시면 바꿔 드릴게요. 예: `Add a helper to decide free-shipping eligibility when the order amount is at least 50,000.`\n- 변경이 파일 하나에 목적도 하나라서 나눠서 커밋할 필요는 없습니다.\n- 현재 작업 디렉터리가 git 저장소로 인식되지 않아서 제가 직접 `git commit`을 실행하지는 않았습니다. 이 메시지로 커밋하길 원하시면 알려 주세요. 저장소 위치를 알려 주시면 그곳에서 진행하겠습니다. 직접 하실 경우:\n\n```\ngit commit -m \"feat(cart): add free shipping eligibility check\" -m \"주문 금액이 5만 원 이상이면 무료 배송 대상으로 판단하는 함수가 필요해 추가\"\n```\n\n이대로 괜찮으면 승인해 주세요.",
+      "error": null,
+      "durationMs": 6072,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "feat-scope",
+      "trial": 4,
+      "output": "제안하는 커밋 메시지입니다.\n\n```\nfeat(cart): add free shipping eligibility check\n\n주문 금액이 5만원 이상이면 무료 배송 대상으로 판단하는 함수가 필요해서 추가\n```\n\n- 최근 로그가 영어 제목(`add discount calculation`)이라 제목은 영어로 맞췄습니다. 본문은 설명이 필요해서 한국어로 썼는데, 전부 영어로 통일하길 원하시면 바꿔 드릴게요.\n- 변경은 새 함수 하나뿐이라 나눠서 커밋할 필요는 없습니다.\n\n이 메시지로 커밋할까요? 승인해 주시면 `git commit`을 실행하겠습니다. (참고로 현재 작업 디렉터리가 git 저장소가 아니라고 나와서, 커밋을 실행하기 전에 올바른 저장소 경로에서 진행해야 할 수도 있습니다.)",
+      "error": null,
+      "durationMs": 5545,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "feat-scope",
+      "trial": 5,
+      "output": "제안하는 커밋 메시지입니다.\n\n```\nfeat(cart): add free shipping eligibility check\n\n배송비 무료 여부를 판단하는 기준(5만 원 이상)이 필요해 함수로 분리함\n```\n\n- 최근 로그가 영어 제목(`feat(cart): add discount calculation`)이라 제목은 영어로 맞췄고, 본문은 이유를 간단히 적었습니다. 본문도 영어로 통일하길 원하시면 바꿔 드릴게요.\n- 변경은 `src/cart/shipping.py` 추가 하나뿐이라 나눌 필요는 없어 보입니다.\n\n이 메시지로 커밋할까요? 승인해 주시면 `git commit`을 실행하겠습니다. (push는 하지 않습니다.)\n\n참고로 현재 작업 디렉터리가 git 저장소로 인식되지 않고 있어서, 커밋하려면 올바른 저장소 경로에서 실행해야 할 수 있습니다.",
+      "error": null,
+      "durationMs": 5364,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "korean-log",
+      "trial": 1,
+      "output": "이 변경은 목적이 하나(time 요소가 없는 trkpt 건너뛰기)라서 한 커밋으로 충분합니다. 최근 로그가 한국어라 같은 언어로 맞췄습니다.\n\n```\nfix(parser): time이 없는 GPX 트랙포인트 건너뛰기\n\ntime 요소가 없는 trkpt를 그대로 변환하면 이후 처리에서 오류가 날 수 있어,\n파싱 단계에서 해당 포인트를 제외한다.\n```\n\n참고로, 현재 작업 디렉터리가 git 저장소가 아니라고 나옵니다. 그래서 제가 여기서 직접 `git commit`을 실행할 수는 없어요. 붙여 주신 diff가 있는 저장소에서 직접 커밋하시거나, 해당 저장소 경로를 알려 주시면 그곳에서 진행하겠습니다.\n\n본문의 \"오류가 날 수 있어\"는 diff만 보고 추정한 내용입니다. 실제 이유가 다르다면(예: 시간순 정렬이나 통계 계산에서 제외해야 하는 경우) 알려 주세요. 그에 맞게 수정하겠습니다.\n\n메시지를 이대로 쓰시려면 승인해 주세요. 저장소 경로를 주시면 그곳에서 커밋하겠습니다.",
+      "error": null,
+      "durationMs": 6363,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "korean-log",
+      "trial": 2,
+      "output": "제안하는 커밋 메시지입니다. 최근 로그가 한국어라 한국어로 맞췄습니다.\n\n```\nfix(parser): time 태그가 없는 GPX 트랙포인트 건너뛰기\n\ntime 요소가 없는 trkpt를 to_point에 넘기면 처리 중 오류가 날 수 있어,\n해당 포인트는 파싱 단계에서 제외하도록 함.\n```\n\n변경은 한 가지 목적이라 나눌 필요는 없어 보입니다.\n\n참고로 현재 작업 디렉터리가 git 저장소로 인식되지 않아서(`Is a git repository: false`), 제가 직접 `git commit`을 실행할 수는 없는 상태입니다. 붙여 주신 diff를 기준으로 작성했습니다. 이 메시지로 커밋하시려면 저장소 경로에서 직접 실행하시거나, 저장소 위치를 알려 주시면 승인 후 커밋해 드리겠습니다.\n\n또 하나, `to_point`가 time 없는 노드에서 실제로 예외를 내는지는 diff만으로 확인되지 않아 본문을 \"~할 수 있어\"로 표현했습니다. 실제 원인(예: 예외 발생, 잘못된 값 생성)을 알려 주시면 본문을 더 정확하게 고칠 수 있습니다.",
+      "error": null,
+      "durationMs": 6232,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "korean-log",
+      "trial": 3,
+      "output": "```\nfix(parser): time 없는 GPX 트랙포인트 건너뛰기\n\ntime 요소가 없는 trkpt를 to_point에 넘기면 오류가 발생할 수 있어 해당 포인트를 건너뛰도록 함.\n```\n\n최근 로그가 `type(scope): 한국어 요약` 형식이라 제목과 본문을 한국어로 맞췄습니다. 변경은 한 가지 목적이라 나눌 필요는 없어 보입니다.\n\n이 메시지로 커밋할까요? 승인해 주시면 `git commit`을 실행하겠습니다.\n\n참고로 현재 작업 디렉터리가 git 저장소가 아니라고 나와 있어서, 실제 커밋은 저장소 경로를 확인해야 할 수도 있습니다.",
+      "error": null,
+      "durationMs": 4812,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "korean-log",
+      "trial": 4,
+      "output": "제안하는 커밋 메시지입니다.\n\n```\nfix(parser): time 요소가 없는 GPX 트랙포인트 건너뛰기\n\ntime 태그가 없는 trkpt를 to_point에 넘기면 처리 중 오류가 날 수 있어, 해당 포인트를 파싱 대상에서 제외한다.\n```\n\n- 변경이 `src/parser/gpx.py` 한 곳, 한 가지 목적(누락된 time 처리)이라 커밋을 나눌 필요는 없어 보입니다.\n- 최근 로그가 한국어라 제목과 본문도 한국어로 맞췄습니다.\n- 본문의 \"오류가 날 수 있어\"는 diff만 보고 추정한 내용입니다. 실제 원인(예: `to_point`에서 `None.text` 접근 등)이 다르면 알려 주세요. 고쳐서 쓰겠습니다.\n\n이 메시지로 커밋할까요? 승인해 주시면 실행하겠습니다. 참고로 지금 작업 디렉터리가 git 저장소로 인식되지 않아서, 커밋 전에 올바른 저장소 경로인지 확인이 필요할 수 있습니다.",
+      "error": null,
+      "durationMs": 5950,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "korean-log",
+      "trial": 5,
+      "output": "제안하는 커밋 메시지입니다. 최근 로그가 한국어라서 한국어로 맞췄습니다.\n\n```\nfix(parser): time 태그 없는 GPX 트랙포인트 건너뛰기\n\ntime 요소가 없는 trkpt를 to_point에 넘기면 오류가 날 수 있어,\n시간 정보가 없는 포인트는 파싱 단계에서 제외한다.\n```\n\n참고로 diff만 보고 작성해서, 실제로 `to_point`가 `time` 없을 때 예외를 내는지는 확인하지 못했습니다. 본문의 \"오류가 날 수 있어\" 부분이 실제 동기와 다르면 알려 주세요. 수정하겠습니다.\n\n이 메시지로 커밋할까요? 승인해 주시면 `git commit`을 실행하겠습니다. (참고로 현재 작업 디렉터리는 git 저장소로 인식되지 않아서, 커밋 전에 올바른 저장소 경로에서 실행해야 할 수도 있습니다.)",
+      "error": null,
+      "durationMs": 5461,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        },
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "mixed-change",
+      "trial": 1,
+      "output": "스테이지된 변경이 서로 다른 목적 두 가지라서 **두 커밋으로 나누는 것**을 제안합니다.\n\n**커밋 1: 파서 버그 수정** (`src/parser/gpx.py`)\n```\nfix(parser): skip trackpoints without time\n\nTrackpoints lacking a <time> element were still being added,\nwhich could leave incomplete points in the parsed result.\n```\n\n**커밋 2: CSV 내보내기 추가** (`src/cli/export.py`)\n```\nfeat(cli): add CSV export for track points\n\nAllow exporting parsed points as lat/lon rows so they can be\nused in spreadsheets and other tools.\n```\n\n- 제목과 본문 언어는 최근 `git log`에 맞춰 영어로 썼습니다.\n- 본문의 \"왜\"는 diff만 보고 추측한 내용입니다. 실제 이유(예: 특정 GPX 파일에서 문제가 생김)가 있으면 알려 주세요. 그에 맞춰 고치겠습니다.\n- 나누려면 먼저 `git restore --staged src/cli/export.py`로 export.py를 스테이지에서 내려 커밋 1을 하고, 이어서 export.py를 `git add`해 커밋 2를 합니다.\n- 지금 작업 디렉터리는 git 저장소가 아니라고 나옵니다. 승인해 주셔도 여기서는 커밋을 실행하지 못할 수 있으니, 저장소 경로를 알려 주시거나 위 메시지를 직접 사용해 주세요.\n\n이대로 나눠서 진행할까요, 아니면 하나로 합쳐서 커밋할까요?",
+      "error": null,
+      "durationMs": 10954,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "mixed-change",
+      "trial": 2,
+      "output": "스테이지된 변경이 서로 다른 목적 두 가지라서 **커밋을 둘로 나누는 걸 권장합니다.**\n\n- `src/parser/gpx.py`: 버그 수정 (time이 없는 trkpt 건너뛰기)\n- `src/cli/export.py`: 새 기능 (CSV 내보내기)\n\n최근 로그가 영어라서 메시지도 영어로 맞췄습니다.\n\n**커밋 1**\n```\nfix(parser): skip GPX track points without time\n\nPoints missing a <time> element can't be ordered or timestamped,\nso skip them instead of building incomplete points.\n```\n\n**커밋 2**\n```\nfeat(cli): add CSV export for track points\n\nLet users dump parsed points (lat, lon) to a CSV file for use\nin other tools.\n```\n\n나누려면 이렇게 하면 됩니다.\n```\ngit restore --staged src/cli/export.py   # 1번 먼저 커밋\ngit commit\ngit add src/cli/export.py                # 이어서 2번 커밋\ngit commit\n```\n\n참고로 `export_csv`는 헤더 행을 쓰지 않습니다. 의도한 거라면 그대로 두면 되고, 아니라면 커밋 전에 추가하는 게 좋겠습니다.\n\n이 메시지로 진행할까요, 수정할 부분이 있을까요? 승인해 주시면 커밋을 실행하겠습니다. 다만 현재 작업 디렉터리가 git 저장소로 인식되지 않아서, 실행 전에 올바른 저장소 경로인지 확인이 필요합니다.",
+      "error": null,
+      "durationMs": 10657,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "mixed-change",
+      "trial": 3,
+      "output": "두 변경은 목적이 달라서 **커밋을 둘로 나누는 것**을 추천해요. 하나는 파서 버그 수정이고, 다른 하나는 새 CLI 기능이에요. 최근 로그가 영어라서 메시지도 영어로 맞췄어요.\n\n**커밋 1**\n```\nfix(parser): skip GPX trackpoints without time\n\nTrackpoints missing a <time> element can't be ordered or\ntimestamped, so skip them instead of building incomplete points.\n```\n\n**커밋 2**\n```\nfeat(cli): add CSV export for track points\n\nLet users dump parsed lat/lon pairs to a CSV file for use in\nspreadsheets and other tools.\n```\n\n나누려면 이렇게 진행해요.\n1. `git reset`으로 스테이징을 풀어요.\n2. `git add src/parser/gpx.py`를 하고 커밋 1을 커밋해요.\n3. `git add src/cli/export.py`를 하고 커밋 2를 커밋해요.\n\n본문의 \"왜\"는 diff만 보고 추정한 내용이라, 실제 이유와 다르면 알려 주세요. 이대로 나눠서 커밋할까요, 아니면 하나로 합칠까요? 승인해 주시면 실행할게요.",
+      "error": null,
+      "durationMs": 8852,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "mixed-change",
+      "trial": 4,
+      "output": "스테이지된 변경에 목적이 다른 두 가지가 섞여 있어서 두 커밋으로 나누는 걸 추천해요.\n\n- `src/parser/gpx.py`: 버그 수정 (`time` 없는 trkpt 건너뛰기)\n- `src/cli/export.py`: 새 기능 (CSV 내보내기)\n\n최근 로그가 영어 Conventional Commits 형식이라 제목과 본문도 영어로 맞췄어요.\n\n**커밋 1**\n```\nfix(parser): skip GPX track points without time\n\nPoints lacking a <time> element were being added to the result.\nThey are now skipped during parsing.\n```\n\n**커밋 2**\n```\nfeat(cli): add CSV export for track points\n\nAdd export_csv to write parsed points to a CSV file as lat/lon rows.\n```\n\n진행하려면 먼저 CSV 내보내기를 스테이지에서 내리고 파서 수정만 커밋한 뒤, 이어서 CSV 내보내기를 커밋하면 돼요.\n```\ngit restore --staged src/cli/export.py\ngit commit   # 커밋 1\ngit add src/cli/export.py\ngit commit   # 커밋 2\n```\n\n확인할 점이 몇 가지 있어요.\n- 커밋 1의 본문은 diff만 보고 쓴 거라, `time`이 없는 점을 건너뛰는 실제 이유(예: 시간 기반 계산에서 오류 발생)를 알려주시면 본문에 반영할게요.\n- `export_csv`는 헤더 행이 없고 `lat`/`lon`만 내보내요. 의도한 동작이라면 그대로 가도 됩니다.\n\n승인해 주시면 위 순서대로 커밋할게요. 메시지를 수정하거나 한 커밋으로 합치고 싶으면 말씀해 주세요. push는 하지 않아요.",
+      "error": null,
+      "durationMs": 10912,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    },
+    {
+      "caseId": "mixed-change",
+      "trial": 5,
+      "output": "스테이지된 변경이 서로 다른 목적 두 가지라서 **두 커밋으로 나누는 것**을 제안합니다. 최근 `git log`가 영어라서 메시지도 영어로 맞췄습니다.\n\n**커밋 1: 파서 수정** (`src/parser/gpx.py`)\n```\nfix(parser): skip trackpoints without time\n\nTrackpoints missing a <time> element can't be used as timed\ndata, so skip them instead of building incomplete points.\n```\n\n**커밋 2: CSV 내보내기 추가** (`src/cli/export.py`)\n```\nfeat(cli): add CSV export for points\n\nAllow exporting parsed points as a lat/lon CSV file.\n```\n\n나누려면 아래 순서로 진행하면 됩니다.\n```\ngit reset -- src/cli/export.py   # export.py를 스테이지에서 내림\n# → 커밋 1 실행\ngit add src/cli/export.py\n# → 커밋 2 실행\n```\n\n- 커밋 1 본문의 이유는 diff만 보고 추측한 것입니다. 실제 사유(예: 시간 없는 포인트 때문에 생긴 오류)가 있으면 알려주세요. 반영해서 고치겠습니다.\n- `export_csv`는 헤더 없이 `lat, lon`만 씁니다. 의도한 동작이면 괜찮습니다.\n\n이대로 나눠서 커밋할까요, 아니면 하나로 합칠까요? 승인해 주시면 진행하겠습니다. 참고로 현재 작업 디렉터리는 git 저장소로 인식되지 않으니, 실제 저장소 경로에서 실행해야 합니다.",
+      "error": null,
+      "durationMs": 10037,
+      "assertions": [
+        {
+          "type": "regex",
+          "pass": true,
+          "score": 1,
+          "weight": 1,
+          "reason": "matched"
+        }
+      ],
+      "pass": true,
+      "score": 1
+    }
+  ]
+}

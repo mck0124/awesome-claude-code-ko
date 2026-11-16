@@ -1,0 +1,66 @@
+# skill-gauge 스위트. 실행: skill-gauge run suite.yaml --repeat 5
+# Skill 없이(비교군): SKILL_FILE=../../_eval/baseline.md 를 앞에 붙여 실행
+name: code-review-ko
+provider:
+  # 도구 없음 · 빈 임시 폴더 · 사용자 설정 제외. SKILL.md가 시스템 프롬프트 전체입니다.
+  command: claude -p --model claude-sonnet-5-5 --tools "" --no-session-persistence --setting-sources project --disable-slash-commands --system-prompt "$(cat "${SKILL_FILE:-$SKILL_GAUGE_SUITE_DIR/../SKILL.md}")"
+  isolate: true
+  timeoutMs: 120000
+repeat: 5
+concurrency: 4
+
+cases:
+  - id: zero-division
+    input: |
+      리뷰해줘.
+
+      $ git diff main...HEAD
+      diff --git a/cart.py b/cart.py
+      --- a/cart.py
+      +++ b/cart.py
+      @@ -1,2 +1,6 @@
+       def total(items):
+           return sum(i["price"] * i["qty"] for i in items)
+      +
+      +
+      +def average_price(items):
+      +    return total(items) / len(items)
+
+      $ cat -n cart.py
+           1	def total(items):
+           2	    return sum(i["price"] * i["qty"] for i in items)
+           3	
+           4	
+           5	def average_price(items):
+           6	    return total(items) / len(items)
+    assert:
+      - { type: contains, value: "🔴" }
+      - { type: regex, pattern: 'cart\.py:\d+' }
+      - { type: regex, pattern: 'ZeroDivision|빈 |비어|0으로' }
+
+  - id: off-by-one
+    input: |
+      PR 올리기 전에 봐줘.
+
+      $ git diff main...HEAD
+      diff --git a/pager.py b/pager.py
+      new file mode 100644
+      --- /dev/null
+      +++ b/pager.py
+      @@ -0,0 +1,5 @@
+      +def paginate(items, page, size):
+      +    """page는 0부터 시작. 한 페이지에 size개를 돌려준다."""
+      +    start = page * size
+      +    end = start + size + 1
+      +    return items[start:end]
+
+      $ cat -n pager.py
+           1	def paginate(items, page, size):
+           2	    """page는 0부터 시작. 한 페이지에 size개를 돌려준다."""
+           3	    start = page * size
+           4	    end = start + size + 1
+           5	    return items[start:end]
+    assert:
+      - { type: contains, value: "🔴" }
+      - { type: regex, pattern: 'pager\.py:\d+' }
+      - { type: regex, pattern: '\+ ?1|하나 더|한 개 더|1개 더' }
