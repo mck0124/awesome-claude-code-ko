@@ -20,7 +20,7 @@ Each example says how far it was actually checked (as of 2026-11-16):
 - **Settings (3):** confirmed inside Claude Code with a headless run in a scratch project.
 - **Skills (4):** run once inside Claude Code, then measured with [skill-gauge](https://github.com/mck0124/skill-gauge): with vs. without the skill, 5 runs per case, Claude Sonnet 5.5, regex checks only. Three skills went from 0–30% to 100% on their format rules; `commit-message` showed no difference (100% both ways), and its README says so. Suites and raw results are in each skill's `eval/` folder.
 
-The pass rates measure whether the output follows the skill's rules every time, not overall quality. Resource links without a ✅ were collected but not yet reviewed in depth by the maintainer.
+The pass rates measure whether the output follows the skill's rules every time, not overall quality. All resource links were read by the maintainer before being listed.
 
 ## Contributing
 Suggest a resource or send an example: see [CONTRIBUTING.md](CONTRIBUTING.md). English issues and PRs are welcome.
