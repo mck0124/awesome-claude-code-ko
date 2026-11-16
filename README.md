@@ -1,20 +1,59 @@
-# Awesome Claude Code 한국어 🇰🇷
+<h1 align="center">Awesome Claude Code 한국어 🇰🇷</h1>
 
-[English summary →](README.en.md)
+<p align="center">
+  <b>한국어 Claude Code 자료 60여 개 · 명령 두 줄로 설치하는 Skill과 Hook · 직접 잰 전/후 수치</b>
+</p>
 
-**Claude Code를 실전에서 잘 쓰기 위한 한국어 자료 · 복사해서 쓰는 설정 예제 모음**
+<p align="center">
+  <a href="../../stargazers"><img src="https://img.shields.io/github/stars/mck0124/awesome-claude-code-ko?style=flat&color=yellow" alt="Stars"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-CC0--1.0-blue" alt="License: CC0-1.0"></a>
+  <img src="https://img.shields.io/github/last-commit/mck0124/awesome-claude-code-ko" alt="Last commit">
+</p>
 
-영어 자료는 넘쳐나는데 한국어 자료는 블로그 글로 흩어져 있어서 한곳에 모았습니다.
-링크와 함께 바로 복사해 쓸 수 있는 **Skill · Hook · 설정 예제**를 [`examples/`](examples/)에 담았습니다.
-예제마다 **어디까지 확인했는지**를 솔직히 적어 두었고, 직접 실행해서 확인한 것에만 ✅를 붙입니다.
+<p align="center">
+  <a href="#바로-설치">설치</a> ·
+  <a href="#직접-잰-결과-">측정 결과</a> ·
+  <a href="#시작하기">10분 시작 가이드</a> ·
+  <a href="#목차">자료 목록</a> ·
+  <a href="README.en.md">English</a>
+</p>
 
-**설치는 두 줄:** `/plugin marketplace add mck0124/awesome-claude-code-ko` → `/plugin install ko-skills@awesome-claude-code-ko` ([자세히](#명령-두-줄로-설치))
+영어 자료는 넘쳐나는데 한국어 자료는 블로그 글로 흩어져 있어서 한곳에 모았습니다. 링크만 모으지 않고, 바로 쓸 수 있는 **Skill · Hook · 설정 예제**를 직접 돌려 보고 결과를 적었습니다.
 
-⭐ 도움이 됐다면 Star, 좋은 자료를 알고 있다면 [추천해 주세요](../../issues/new?template=suggest.yml).
+## 바로 설치
+이 레포는 Claude Code **플러그인 마켓플레이스**입니다. Claude Code 안에서 두 줄을 입력하세요.
+```
+/plugin marketplace add mck0124/awesome-claude-code-ko
+/plugin install ko-skills@awesome-claude-code-ko
+```
 
-> **표시** 🇰🇷 한국어 자료 · ✅ 메인테이너가 직접 써 보고 확인함 · 🧪 측정 결과 있음
+| 플러그인 | 내용 | 확인 |
+|---|---|---|
+| [`ko-skills`](examples/skills/) | Skill 4개: 커밋 메시지 · 한국어 코드 리뷰 · 한국어 문서 다듬기 · PR 설명 | ✅ 🧪 |
+| [`block-dangerous-commands`](examples/hooks/block-dangerous-commands/) | `git push --force`, `git reset --hard`, `curl \| sh` 등을 실행 전에 차단 | ✅ |
+| [`auto-format`](examples/hooks/auto-format/) | 파일 수정 직후 포맷터 자동 실행 | ✅ |
+| [`notify-on-stop`](examples/hooks/notify-on-stop/) | 응답이 끝나면 알림 | ✅ |
+
+필요한 것만 골라 설치하세요. 지울 때는 `/plugin uninstall <이름>@awesome-claude-code-ko`.
+복사해서 고쳐 쓰는 [설정 예제 3개](examples/settings/)(권한 허용 목록, 프로젝트용·개인용 `CLAUDE.md`)도 있습니다.
+
+## 직접 잰 결과 🧪
+Skill이 있을 때와 없을 때를 [skill-gauge](https://github.com/mck0124/skill-gauge)로 케이스당 5회씩 돌려 통과율을 쟀습니다 (Claude Sonnet 5.5, 2026-11-16).
+
+| Skill | Skill 없음 | Skill 있음 | 차이가 난 곳 |
+|---|:-:|:-:|---|
+| [code-review-ko](examples/skills/code-review-ko/) | 30% | **100%** | `파일:줄` 표기, 🔴🟡🟢 형식 |
+| [korean-doc-polish](examples/skills/korean-doc-polish/) | 0% | **100%** | 변경 전/후 표, "확인 필요" 표기 |
+| [pr-description](examples/skills/pr-description/) | 0% | **100%** | 팀 템플릿의 제목 4개 |
+| [commit-message](examples/skills/commit-message/) | 100% | 100% | 차이 없음 |
+
+수치는 "품질"이 아니라 **"Skill의 규칙을 매번 지키는가"** 입니다. 예를 들어 버그는 Skill 없이도 찾았고, 달라진 것은 보고 형식의 일관성이었습니다. 차이가 없었던 결과도 그대로 적었습니다. 케이스와 원본 결과는 각 예제의 `eval/` 폴더에 있어 직접 다시 돌려 볼 수 있습니다.
+
+> **표시** 🇰🇷 한국어 자료 · ✅ 메인테이너가 Claude Code에서 직접 써 보고 확인함 · 🧪 측정 결과 있음
 >
-> 이 목록의 링크는 모두 메인테이너가 읽어 보고 골랐습니다 (2026-11-16 기준).
+> 목록의 링크는 모두 메인테이너가 읽어 보고 골랐습니다 (2026-11-16 기준). 확인하지 못한 부분은 각 예제 README에 적어 두었습니다.
+
+⭐ 도움이 됐다면 Star를, 좋은 자료를 알고 있다면 [추천](../../issues/new?template=suggest.yml)을 부탁드립니다.
 
 ## 목차
 - [시작하기](#시작하기)
@@ -136,26 +175,13 @@ claude
 - [mck0124/skill-gauge](https://github.com/mck0124/skill-gauge) ✅ 🧪 — Skill · 프롬프트를 YAML 테스트로 N회 반복 실행해 통과율 · 점수 분산 · 회귀를 측정하는 CLI
 
 ## 검증된 예제
-[`examples/`](examples/)의 예제는 다음을 목표로 합니다. **Hook 3개와 설정 3개는 Claude Code 안에서 확인했고, Skill 4개는 skill-gauge로 "Skill 없음/있음"을 5회씩 측정했습니다. 확인하지 못한 부분과 측정의 한계는 각 예제 README에 적어 두었습니다.**
-1. 메인테이너가 직접 실행해 봄
-2. 무엇이 좋아졌는지 **전/후**를 적음 (가능하면 [skill-gauge](https://github.com/mck0124/skill-gauge)로 측정한 수치)
-3. 그대로 복사해서 쓸 수 있음
+설치 방법과 측정 결과는 [맨 위](#바로-설치)에 있습니다. 예제마다 무엇을 하는지, 어디까지 확인했는지, 주의할 점을 README에 적었습니다.
 
-
-### 명령 두 줄로 설치
-이 레포는 Claude Code **플러그인 마켓플레이스**이기도 합니다. Claude Code 안에서 아래를 입력하면 예제가 설치됩니다.
-```
-/plugin marketplace add mck0124/awesome-claude-code-ko
-/plugin install ko-skills@awesome-claude-code-ko
-```
-| 플러그인 | 내용 |
+| 분류 | 예제 |
 |---|---|
-| `ko-skills` | Skill 4개: 커밋 메시지 · 한국어 코드 리뷰 · 한국어 문서 다듬기 · PR 설명 |
-| `block-dangerous-commands` | `git push --force`, `git reset --hard`, `curl \| sh` 등을 실행 전에 차단 |
-| `auto-format` | 파일 수정 직후 포맷터 자동 실행 |
-| `notify-on-stop` | 응답이 끝나면 알림 |
-
-필요한 것만 골라 설치하세요. 설정 예제(권한 목록, CLAUDE.md 템플릿)는 자기 프로젝트에 맞게 고쳐 써야 해서 플러그인이 아니라 복사용으로 둡니다. 지울 때는 `/plugin uninstall <이름>@awesome-claude-code-ko`.
+| Skill | [commit-message](examples/skills/commit-message/) · [code-review-ko](examples/skills/code-review-ko/) · [korean-doc-polish](examples/skills/korean-doc-polish/) · [pr-description](examples/skills/pr-description/) |
+| Hook | [block-dangerous-commands](examples/hooks/block-dangerous-commands/) · [auto-format](examples/hooks/auto-format/) · [notify-on-stop](examples/hooks/notify-on-stop/) |
+| 설정 | [permissions-allowlist](examples/settings/permissions-allowlist/) · [project-claude-md](examples/settings/project-claude-md/) · [personal-claude-md](examples/settings/personal-claude-md/) |
 
 ## 영어 자료 모음
 - [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) — 가장 큰 영어 awesome 목록
