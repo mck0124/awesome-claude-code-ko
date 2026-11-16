@@ -19,8 +19,12 @@ cp block-dangerous.sh ~/.claude/hooks/ && chmod +x ~/.claude/hooks/block-dangero
 | `ls -la` · `rm -rf node_modules` · `git push origin main` | 통과 (exit 0) |
 | `rm -rf ~` · `git push --force …` · `git reset --hard …` · `curl … \| sh` · `DROP TABLE …` | 차단 (exit 2) |
 
-> ⚠️ 위 표는 스크립트에 JSON을 직접 넣어 확인한 결과입니다. Claude Code 안에서 실제로 막히는지는 **아직 메인테이너가 확인하지 않았습니다** (확인하면 이 줄을 지우고 ✅ 표시).
+## Claude Code 안에서 확인 ✅ (2026-11-16)
+전역 `~/.claude/settings.json`에 설치한 뒤 Claude가 Bash로 `echo "git reset --hard"`를 실행하려 하자 실행 전에 막혔고, 차단 사유가 Claude에게 전달됐습니다. 설정을 저장한 뒤 세션을 다시 열지 않아도 바로 적용됐습니다.
+
+Claude Code 안에서 확인한 것은 이 한 가지 규칙입니다. 나머지 규칙은 위 표처럼 스크립트 단독 실행으로만 확인했습니다.
 
 ## 주의할 점
+- 명령 문자열 전체를 검사하므로 `echo "git reset --hard"`나 그 문구가 들어간 커밋 메시지처럼 실제로는 위험하지 않은 명령도 막힙니다.
 - 정규식 기반이라 `bash -c "..."`로 감싸거나 변수로 쪼갠 명령은 못 잡습니다. **보안 경계가 아니라 실수 방지용**입니다.
 - 차단 규칙은 `block-dangerous.sh`의 `grep` 줄을 고쳐서 추가하세요.
